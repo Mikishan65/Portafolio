@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio - Miguel Ángel Chavarría Coronado</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      background: #ffffff;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background: #000000;
+      color: #f8f9fa;
+    }
+    .light-mode {
+      background: #ffffff;
+      color: #333333;
+    }
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 123, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+      transition: background-color 0.5s ease;
+    }
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+      font-weight: bold;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #007bff;
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link:hover {
+      color: #e0f7fa !important;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    /* Secciones */
+    .section-title {
+      font-size: 2.5em;
+      color: #007bff;
+      text-transform: uppercase;
+      margin-top: 50px;
+      margin-bottom: 30px;
+    }
+    .about-text {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    /* Proyectos */
+    .projects-container {
+      margin-top: 50px;
+    }
+    .project-card {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .project-card-body {
+      padding: 15px;
+      background: #f8f9fa;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .project-card:hover .project-card-body {
+      background-color: #007bff;
+      color: #fff;
+    }
+    /* Botón de cambio de tema */
+    .theme-toggle {
+      position: fixed;
+      top: 120px;
+      right: 15px;
+      background-color: rgba(0,0,0,0.7);
+      border-radius: 0.75em;
+      box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.3) inset;
+      color: #fdea7b;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15em;
+      width: 3em;
+      height: 1.5em;
+      transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    .theme-toggle:before, .theme-toggle:after {
+      content: "";
+      display: block;
+    }
+    .theme-toggle:before {
+      background-color: #d7d7d7;
+      border-radius: 50%;
+      width: 1.2em;
+      height: 1.2em;
+      transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+      z-index: 1;
+    }
+    .theme-toggle:after {
+      background: linear-gradient(transparent 50%, rgba(0,0,0,0.15) 0) 0 50% / 50% 100%,
+        repeating-linear-gradient(90deg,#bbb 0,#bbb,#bbb 20%,#999 20%,#999 40%) 0 50% / 50% 100%,
+        radial-gradient(circle at 50% 50%,#888 25%, transparent 26%);
+      background-repeat: no-repeat;
+      border: 0.25em solid transparent;
+      border-left: 0.4em solid #d8d8d8;
+      border-right: 0 solid transparent;
+      transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+      transform: translateX(-22.5%);
+      transform-origin: 25% 50%;
+      width: 1.2em;
+      height: 1em;
+      box-sizing: border-box;
+    }
+    /* Checked */
+    .theme-toggle:checked {
+      background-color: rgba(0,0,0,0.45);
+      box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.1) inset;
+    }
+    .theme-toggle:checked:before {
+      background-color: currentColor;
+      transform: translateX(125%);
+    }
+    .theme-toggle:checked:after {
+      border-left-color: currentColor;
+      transform: translateX(-2.5%) rotateY(180deg);
+    }
+    /* Otros estados */
+    .theme-toggle:focus {
+      outline: 0;
+    }
+    /* Iconos de tecnología */
+    .tech-icon-container {
+      position: relative;
+      display: inline-block;
+      margin: 15px;
+    }
+    .tech-icon {
+      font-size: 2.5em;
+      transition: transform 0.2s, color 0.3s;
+    }
+    .tech-icon:hover {
+      transform: scale(1.25);
+    }
+    /* Asignación de colores a los iconos */
+    .php-icon { color: #777bb4; }
+    .js-icon { color: #f7df1e; }
+    .react-icon { color: #61dafb; }
+    .vue-icon { color: #42b883; }
+    .python-icon { color: #3776ab; }
+    .database-icon { color: #f29111; }
+    .github-icon { color: #333; }
+    .vscode-icon { color: #007acc; }
+    .azure-icon { color: #0089d6; }
+    .code-icon { color: #5a9; }
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      opacity: 0;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      color: #333;
+      background-color: #f8f9fa;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 10;
+    }
+    .tech-icon-container:hover .tooltip {
+      transform: translateX(-50%) scale(1);
+      opacity: 1;
+    }
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#"><i class="fas fa-home"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">Sobre Mí</a></li>
+        <li class="nav-item"><a class="nav-link" href="#technologies">Tecnologías</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Botón de cambio de tema -->
+  <input type="checkbox" id="toggle-theme" class="theme-toggle">
+
+  <!-- Sección Sobre Mí -->
+  <section id="about" class="container text-center mt-5 pt-5">
+    <h2 class="section-title"><i class="fas fa-user"></i> Sobre Mí</h2>
+    <p class="about-text">
+      ¡Hola! Soy <strong>Miguel Ángel Chavarría Coronado</strong>, tengo 20 años y soy estudiante de Ingeniería en Sistemas en el 6to semestre. He realizado cursos de Cisco en Python TI CCNA y tengo experiencia en desarrollo web con arquitectura MVC. He trabajado en proyectos de aplicaciones móviles, incluyendo una aplicación de match y un proyecto para el restaurante By Dosier de la UDI. Soy soltero y actualmente busco oportunidades para crecer profesionalmente. Mi nivel de inglés es intermedio y me apasiona el desarrollo de software y la tecnología.
+    </p>
+  </section>
+
+  <!-- Sección Tecnologías -->
+  <section id="technologies" class="container text-center mt-5">
+    <h2 class="section-title"><i class="fas fa-laptop-code"></i> Tecnologías</h2>
+    <div class="row justify-content-center">
+      <div class="tech-icon-container">
+        <i class="fab fa-php tech-icon php-icon"></i>
+        <span class="tooltip">PHP</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-js tech-icon js-icon"></i>
+        <span class="tooltip">JavaScript</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-react tech-icon react-icon"></i>
+        <span class="tooltip">React</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-vuejs tech-icon vue-icon"></i>
+        <span class="tooltip">Vue.js</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-python tech-icon python-icon"></i>
+        <span class="tooltip">Python</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fas fa-database tech-icon database-icon"></i>
+        <span class="tooltip">MySQL & PostgreSQL</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-github tech-icon github-icon"></i>
+        <span class="tooltip">GitHub</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-microsoft tech-icon vscode-icon"></i>
+        <span class="tooltip">Visual Studio Code</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fab fa-aws tech-icon azure-icon"></i>
+        <span class="tooltip">Microsoft Azure</span>
+      </div>
+      <div class="tech-icon-container">
+        <i class="fas fa-code tech-icon code-icon"></i>
+        <span class="tooltip">C# & Visual Basic</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Proyectos -->
+  <section id="projects" class="container text-center projects-container mt-5">
+    <h2 class="section-title"><i class="fas fa-briefcase"></i> Proyectos</h2>
+    <div class="row">
+      <!-- Proyecto MVC -->
+      <div class="col-md-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Proyecto MVC Web</h5>
+            <p>Desarrollo de una aplicación web utilizando el patrón de arquitectura MVC, implementando funcionalidades dinámicas y una interfaz amigable.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Aplicación de Match -->
+      <div class="col-md-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Aplicación Móvil de Match</h5>
+            <p>Creación de una aplicación móvil que conecta usuarios con intereses similares, desarrollada en equipo y utilizando metodologías ágiles.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Restaurante By Dosier -->
+      <div class="col-md-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Restaurante By Dosier</h5>
+            <p>Proyecto para el restaurante By Dosier de la UDI, desarrollando una plataforma para gestión de pedidos y reservas en línea.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Proyecto Adicional -->
+      <div class="col-md-4 mt-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Gestión de Bases de Datos</h5>
+            <p>Implementación y administración de bases de datos en MySQL y PostgreSQL para aplicaciones empresariales.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Proyecto Adicional -->
+      <div class="col-md-4 mt-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Sistema en C#</h5>
+            <p>Desarrollo de una aplicación de escritorio en C# para gestión interna de recursos en una organización.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Proyecto Adicional -->
+      <div class="col-md-4 mt-4">
+        <div class="project-card">
+          <div class="project-card-body">
+            <h5>Servicios en la Nube</h5>
+            <p>Configuración y despliegue de servidores en Microsoft Azure, optimizando el rendimiento y la seguridad de aplicaciones web.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contact" class="container text-center mt-5">
+    <h2 class="section-title"><i class="fas fa-envelope"></i> Contacto</h2>
+    <p>Si estás interesado en colaborar o tienes alguna pregunta, no dudes en contactarme.</p>
+    <div class="contact-form">
+      <form action="mailto:miguelangelchavarriacoronado@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" rows="5" placeholder="Mensaje" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Miguel Ángel Chavarría Coronado</p>
+    <p>Sígueme en:
+      <a href="https://github.com/Mikishan65" class="text-white"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/miguel-chavarr%C3%ADa-2ba25429b/" class="text-white ml-3"><i class="fab fa-linkedin"></i></a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById('toggle-theme').addEventListener('change', function() {
+      document.body.classList.toggle('dark-mode');
+      document.body.classList.toggle('light-mode');
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
