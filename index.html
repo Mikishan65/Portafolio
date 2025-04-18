@@ -5,59 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portafolio – Miguel Ángel Chavarría Coronado</title>
 
-  <!-- Core CSS & Libraries -->
+  <!-- Core CSS & Libraries -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <style>
-    /* ==================== Variables ==================== */
+    /* ==================== Variables ==================== */
     :root {
       --primary: #007bff;
       --primary-light: rgba(0, 123, 255, 0.15);
-      --dark: #000000;
-      --light: #ffffff;
+      --dark: #000;
+      --light: #fff;
       --fade: rgba(0, 0, 0, 0.05);
     }
 
-    /* ==================== Base ==================== */
-    html {
-      scroll-behavior: smooth;
-    }
+    /* ==================== Base ==================== */
+    html { scroll-behavior: smooth; }
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: #333;
       background: var(--light);
       transition: background-color 0.4s ease, color 0.4s ease;
     }
-    .dark-mode {
-      background: var(--dark);
-      color: #f8f9fa;
-    }
+    .dark-mode { background: var(--dark); color: #f8f9fa; }
 
-    /* ==================== Navbar ==================== */
+    /* ==================== Navbar ==================== */
     .navbar {
-      background-color: rgba(0, 123, 255, 0.85);
+      background: rgba(0, 123, 255, 0.85);
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
       transition: transform 0.3s ease-in-out;
     }
-    .navbar.scrolled {
-      transform: translateY(-100%);
-    }
+    .navbar.scrolled { transform: translateY(-100%); }
     .navbar-brand,
-    .nav-link {
-      color: #fff !important;
-      font-weight: 600;
-    }
-    .nav-link {
-      position: relative;
-      overflow: hidden;
-    }
+    .nav-link { color: #fff !important; font-weight: 600; }
+    .nav-link { position: relative; overflow: hidden; }
     .nav-link::after {
       content: "";
       position: absolute;
@@ -68,14 +52,10 @@
       left: 0;
       transition: width 0.35s ease-in-out;
     }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    .nav-link:hover {
-      color: #e0f7fa !important;
-    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #e0f7fa !important; }
 
-    /* ==================== Section Titles ==================== */
+    /* ==================== Section Titles ==================== */
     .section-title {
       font-size: 2.4rem;
       font-weight: 700;
@@ -84,10 +64,8 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ==================== About ==================== */
-    #about {
-      padding-top: 140px; /* offset for navbar */
-    }
+    /* ==================== About ==================== */
+    #about { padding-top: 140px; }
     .profile-img {
       width: 180px;
       height: 180px;
@@ -96,24 +74,12 @@
       box-shadow: 0 6px 15px var(--fade);
       transition: transform 0.4s ease;
     }
-    .profile-img:hover {
-      transform: scale(1.05) rotate(-2deg);
-    }
+    .profile-img:hover { transform: scale(1.05) rotate(-2deg); }
 
-    /* ==================== Technologies ==================== */
-    .tech-icon-container {
-      position: relative;
-      display: inline-block;
-      margin: 20px 25px;
-      transition: transform 0.3s;
-    }
-    .tech-icon-container:hover {
-      transform: translateY(-10px);
-    }
-    .tech-icon {
-      font-size: 3rem;
-    }
-
+    /* ==================== Technologies ==================== */
+    .tech-icon-container { position: relative; display: inline-block; margin: 20px 25px; transition: transform 0.3s; }
+    .tech-icon-container:hover { transform: translateY(-10px); }
+    .tech-icon { font-size: 3rem; }
     .tooltip-custom {
       position: absolute;
       bottom: 120%;
@@ -123,7 +89,7 @@
       padding: 6px 12px;
       font-size: 0.9rem;
       color: #333;
-      background-color: #f8f9fa;
+      background: #f8f9fa;
       border: 1px solid #ccc;
       border-radius: 8px;
       white-space: nowrap;
@@ -132,12 +98,9 @@
       z-index: 10;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
-    .tech-icon-container:hover .tooltip-custom {
-      transform: translateX(-50%) scale(1);
-      opacity: 1;
-    }
+    .tech-icon-container:hover .tooltip-custom { transform: translateX(-50%) scale(1); opacity: 1; }
 
-    /* Color assignment */
+    /* Icon colors */
     .php-icon { color: #777bb4; }
     .js-icon { color: #f7df1e; }
     .react-icon { color: #61dafb; }
@@ -149,113 +112,58 @@
     .azure-icon { color: #0089d6; }
     .code-icon { color: #5a9; }
 
-    /* ==================== Project Cards ==================== */
+    /* ==================== Project Cards ==================== */
     .project-card {
       border: 0;
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: transform 0.35s, box-shadow 0.35s, background 0.35s;
       background: var(--light);
-    }
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+      color: inherit;
     }
     .project-card-body {
       padding: 1.4rem 1.6rem;
+      transition: color 0.35s;
     }
-    .project-card-body h5 {
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
+    .project-card-body h5 { font-weight: 700; margin-bottom: 0.75rem; transition: color 0.35s; }
 
-    /* ==================== Timeline (Experience) ==================== */
-    .timeline {
-      position: relative;
-      padding-left: 1.5rem;
-      list-style: none;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 8px;
-      width: 4px;
-      height: 100%;
+    /* Hover – cambia fondo y texto */
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
       background: var(--primary);
-      border-radius: 2px;
     }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 1.8rem;
-      padding-left: 1.75rem;
-    }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -6px;
-      width: 16px;
-      height: 16px;
-      background: var(--light);
-      border: 4px solid var(--primary);
-      border-radius: 50%;
-    }
+    .project-card:hover .project-card-body,
+    .project-card:hover .project-card-body * { color: #fff; }
 
-    /* ==================== Theme Toggle ==================== */
-    .theme-toggle {
-      position: fixed;
-      top: 110px;
-      right: 18px;
-      width: 3.2em;
-      height: 1.6em;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 0.8em;
-      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      outline: none;
-      appearance: none;
-      transition: 0.25s background ease;
-      z-index: 850;
-    }
-    .theme-toggle:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 4px;
-      width: 1.2em;
-      height: 1.2em;
-      background: #fdea7b;
-      border-radius: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease, background 0.25s ease;
-    }
-    .theme-toggle:checked {
-      background: rgba(0, 0, 0, 0.4);
-    }
-    .theme-toggle:checked:before {
-      transform: translate(145%, -50%);
-      background: #ddd;
-    }
+    /* Modo oscuro */
+    .dark-mode .project-card { background: #141414; color: #ddd; }
+    .dark-mode .project-card:hover { background: var(--primary); }
+    .dark-mode .project-card:hover .project-card-body,
+    .dark-mode .project-card:hover .project-card-body * { color: #fff; }
 
-    /* ==================== Footer ==================== */
-    footer {
-      background: #222;
-      color: #f8f9fa;
-      padding: 25px 0 20px;
-      margin-top: 60px;
-    }
-    footer a {
-      color: #f8f9fa;
-      transition: color 0.3s;
-    }
-    footer a:hover {
-      color: var(--primary);
-    }
+    /* ==================== Timeline ==================== */
+    .timeline { position: relative; padding-left: 1.5rem; list-style: none; }
+    .timeline::before { content: ""; position: absolute; top: 0; left: 8px; width: 4px; height: 100%; background: var(--primary); border-radius: 2px; }
+    .timeline-item { position: relative; margin-bottom: 1.8rem; padding-left: 1.75rem; }
+    .timeline-item::before { content: ""; position: absolute; top: 0; left: -6px; width: 16px; height: 16px; background: var(--light); border: 4px solid var(--primary); border-radius: 50%; }
+
+    /* ==================== Theme Toggle ==================== */
+    .theme-toggle { position: fixed; top: 110px; right: 18px; width: 3.2em; height: 1.6em; background: rgba(0, 0, 0, 0.7); border-radius: 0.8em; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4); cursor: pointer; outline: none; appearance: none; transition: 0.25s background ease; z-index: 850; }
+    .theme-toggle:before { content: ""; position: absolute; top: 50%; left: 4px; width: 1.2em; height: 1.2em; background: #fdea7b; border-radius: 50%; transform: translateY(-50%); transition: transform 0.3s, background 0.25s; }
+    .theme-toggle:checked { background: rgba(0, 0, 0, 0.4); }
+    .theme-toggle:checked:before { transform: translate(145%, -50%); background: #ddd; }
+
+    /* ==================== Footer ==================== */
+    footer { background: #222; color: #f8f9fa; padding: 25px 0 20px; margin-top: 60px; }
+    footer a { color: #f8f9fa; transition: color 0.3s; }
+    footer a:hover { color: var(--primary);} 
   </style>
 </head>
 <body class="light-mode">
+  <!--==================== Navbar ====================-->
+
   <!--==================== Navbar ====================-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
