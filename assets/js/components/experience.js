@@ -22,7 +22,8 @@ export function createExperienceSection() {
     <section id="experience" class="section-block god-section">
       <div class="container-fluid">
         <div class="section-head reveal">
-          <h2 class="massive-title">Experiencia.</h2>
+          <p class="eyebrow">Trayectoria</p>
+          <h2 class="massive-title experience-title">Experiencia</h2>
         </div>
         <div class="experience-list">
           ${experienceEntries.map(renderExperience).join("")}

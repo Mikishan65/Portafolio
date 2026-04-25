@@ -95,15 +95,22 @@ a:hover {
   transform: translateY(0);
 }
 
-.site-nav {
-  background: rgba(9, 11, 20, 0.7);
-  border-bottom: 1px solid var(--line);
+#topnav.site-nav {
+  top: 0.9rem;
+  left: 50%;
+  right: auto;
+  width: min(calc(100% - 1.5rem), 1180px);
+  transform: translateX(-50%);
+  background: rgba(9, 11, 20, 0.62);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.35s ease, opacity 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
 }
 
-.site-nav::after {
+#topnav.site-nav::after {
   content: "";
   position: absolute;
   left: 0;
@@ -112,6 +119,25 @@ a:hover {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--brand), var(--accent), transparent);
   opacity: 0.5;
+}
+
+#topnav.site-nav .container {
+  min-height: 72px;
+}
+
+#topnav.site-nav.nav-scrolled {
+  background: rgba(9, 11, 20, 0.84);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+#topnav.site-nav.nav-hidden {
+  transform: translate(-50%, -145%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#topnav.site-nav.nav-expanded {
+  border-radius: 1.4rem;
 }
 
 .brand-mark {
@@ -250,7 +276,7 @@ a:hover {
 }
 
 .hero {
-  padding-top: 150px;
+  padding-top: 170px;
   padding-bottom: 80px;
 }
 
@@ -1279,15 +1305,21 @@ a:hover {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(3rem, 8vw, 8rem);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 1;
   letter-spacing: -0.04em;
   color: #fff;
   margin-bottom: 4rem;
+  padding-right: 0.08em;
+  display: inline-block;
   text-transform: uppercase;
   background: linear-gradient(135deg, #fff, #4a5568);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 0.9;
+}
+
+.experience-title {
+  margin-bottom: 3rem;
 }
 
 .project-list, .experience-list {
@@ -1475,6 +1507,25 @@ a:hover {
   gap: 0.75rem;
 }
 
+.hero-side-note {
+  padding-top: 0.35rem;
+}
+
+.hero-side-note span {
+  display: inline-block;
+  color: var(--brand);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-side-note p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  max-width: 30ch;
+}
+
 .metric-strip {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1582,6 +1633,7 @@ a:hover {
 
 .focus-line,
 .flow-item,
+.signal-item,
 .rail-item,
 .stack-line,
 .list-line,
@@ -1593,6 +1645,7 @@ a:hover {
 
 .focus-line:hover,
 .flow-item:hover,
+.signal-item:hover,
 .rail-item:hover,
 .stack-line:hover,
 .list-line:hover,
@@ -1629,6 +1682,34 @@ a:hover {
 .contact-line {
   padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--line);
+}
+
+.signal-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.1rem;
+  padding-top: 0.2rem;
+}
+
+.signal-item {
+  display: grid;
+  gap: 0.28rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.signal-label {
+  color: var(--brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.signal-value {
+  color: #fff;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 1rem;
 }
 
 .flow-kicker,
@@ -1783,10 +1864,37 @@ a:hover {
 }
 
 @media (max-width: 991px) {
+  #topnav.site-nav {
+    top: 0.55rem;
+    width: calc(100% - 0.8rem);
+    border-radius: 1.15rem;
+  }
+
+  #topnav.site-nav .container {
+    min-height: 64px;
+    padding-inline: 0.95rem;
+  }
+
+  #topnav.site-nav .navbar-collapse {
+    margin-top: 0.65rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+  }
+
+  #topnav.site-nav .navbar-nav {
+    gap: 0.35rem !important;
+  }
+
+  #topnav.site-nav .nav-link,
+  #topnav.site-nav .nav-cta {
+    width: 100%;
+  }
+
   .info-stream,
   .stack-layout,
   .contact-stage,
-  .duo-list {
+  .duo-list,
+  .signal-stack {
     grid-template-columns: 1fr;
   }
 
@@ -1795,9 +1903,28 @@ a:hover {
   .contact-copy {
     position: static;
   }
+
+  .hero {
+    padding-top: 132px;
+    padding-bottom: 56px;
+  }
+
+  .massive-title {
+    font-size: clamp(2.6rem, 12vw, 4.8rem);
+    margin-bottom: 2.2rem;
+  }
+
+  .project-row,
+  .experience-row {
+    gap: 1.4rem;
+  }
 }
 
 @media (max-width: 576px) {
+  #topnav.site-nav {
+    width: calc(100% - 0.6rem);
+  }
+
   .info-shell {
     padding-inline-start: 0.9rem;
   }
@@ -1814,5 +1941,24 @@ a:hover {
   .metric-strip {
     grid-template-columns: 1fr;
     gap: 0.35rem;
+  }
+
+  .hero-ribbons,
+  .tag-list,
+  .social-links,
+  .contact-actions {
+    gap: 0.7rem;
+  }
+
+  .hero-side .profile-header {
+    gap: 0.9rem;
+  }
+
+  .project-desc,
+  .exp-period,
+  .exp-tasks li,
+  .flow-value,
+  .contact-value {
+    font-size: 0.96rem;
   }
 }

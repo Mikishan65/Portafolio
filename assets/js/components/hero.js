@@ -66,24 +66,10 @@ export function createHero() {
                 ${heroStats.map(renderStat).join("")}
               </div>
 
-              <ul class="contact-rail">
-                <li class="reveal" data-reveal="right" style="--delay: 180ms">
-                  <span>Correo</span>
-                  <a href="mailto:${siteMeta.email}">${siteMeta.email}</a>
-                </li>
-                <li class="reveal" data-reveal="right" style="--delay: 240ms">
-                  <span>Telefono</span>
-                  <a href="tel:${siteMeta.phone}">${siteMeta.phone}</a>
-                </li>
-                <li class="reveal" data-reveal="right" style="--delay: 300ms">
-                  <span>Ubicacion</span>
-                  <strong>${siteMeta.location}</strong>
-                </li>
-                <li class="reveal" data-reveal="right" style="--delay: 360ms">
-                  <span>Portafolio</span>
-                  <a href="${siteMeta.portfolioUrl}" target="_blank" rel="noreferrer">Ver online</a>
-                </li>
-              </ul>
+              <div class="hero-side-note reveal" data-reveal="right" style="--delay: 210ms">
+                <span>Enfoque actual</span>
+                <p>Construyo interfaces, lógica de negocio y pruebas con una misma línea de trabajo para entregar productos más sólidos.</p>
+              </div>
             </aside>
           </div>
 

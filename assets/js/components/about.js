@@ -1,19 +1,4 @@
-import { aboutCards, aboutFocus, siteMeta } from "../data/portfolioData.js";
-
-function renderInfoCard(card, index) {
-  const value = card.href
-    ? `<a href="${card.href}" ${card.href.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${card.value}</a>`
-    : `<span>${card.value}</span>`;
-
-  const direction = index % 2 === 0 ? "right" : "left";
-
-  return `
-    <div class="flow-item reveal" data-reveal="${direction}" style="--delay: ${180 + index * 70}ms">
-      <span class="flow-kicker"><i class="${card.icon}"></i>${card.label}</span>
-      <div class="flow-value">${value}</div>
-    </div>
-  `;
-}
+import { aboutFocus, siteMeta } from "../data/portfolioData.js";
 
 function renderFocus(item, index) {
   const direction = index % 2 === 0 ? "left" : "right";
@@ -27,7 +12,25 @@ function renderFocus(item, index) {
   `;
 }
 
+function renderSignal(item, index) {
+  const direction = index % 2 === 0 ? "right" : "left";
+
+  return `
+    <div class="signal-item reveal" data-reveal="${direction}" style="--delay: ${180 + index * 60}ms">
+      <span class="signal-label">${item.label}</span>
+      <strong class="signal-value">${item.value}</strong>
+    </div>
+  `;
+}
+
 export function createAboutSection() {
+  const profileSignals = [
+    { label: "Area", value: "Full Stack" },
+    { label: "Metodo", value: "QA + ejecucion" },
+    { label: "Trabajo", value: "Git y colaboracion" },
+    { label: "Infra", value: "Azure y despliegue" }
+  ];
+
   return `
     <section id="about" class="section-block">
       <div class="container info-shell">
@@ -54,8 +57,8 @@ export function createAboutSection() {
               ${aboutFocus.map(renderFocus).join("")}
             </div>
 
-            <div class="flow-cluster">
-              ${aboutCards.map(renderInfoCard).join("")}
+            <div class="signal-stack">
+              ${profileSignals.map(renderSignal).join("")}
             </div>
           </div>
         </div>

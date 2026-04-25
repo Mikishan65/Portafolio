@@ -47,11 +47,6 @@ export function createContactSection() {
 
           <div class="contact-route">
             ${contactLines.map((line, index) => renderContactLine(line[0], line[1], line[2], index)).join("")}
-
-            <div class="contact-actions reveal" data-reveal="up" style="--delay: 360ms">
-              <a class="btn-main" href="mailto:${siteMeta.email}"><i class="fa-solid fa-envelope"></i>Enviar correo</a>
-              <a class="btn-ghost" href="tel:${siteMeta.phone}"><i class="fa-solid fa-phone"></i>Llamar</a>
-            </div>
           </div>
         </div>
       </div>
