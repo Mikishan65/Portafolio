@@ -76,6 +76,12 @@ a:hover {
   color: var(--brand);
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -200,7 +206,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -1336,7 +1341,6 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
   background: transparent;
 }
 
