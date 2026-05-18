@@ -1,0 +1,3 @@
+## 2026-05-18 - Misleading Cursors and Missing Focus Indicators
+**Learning:** Using `cursor: pointer` on non-interactive containers (like card-like rows that don't have a click handler) frustrates users by implying interactivity that doesn't exist. Additionally, global focus indicators are essential for keyboard accessibility but often omitted in custom designs.
+**Action:** Always verify if an element with `cursor: pointer` actually has a click listener or is an `<a>`/`<button>`. Ensure `:focus-visible` is implemented globally using the brand's secondary or primary accent color to provide clear feedback for keyboard navigation.
