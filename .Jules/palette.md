@@ -1,0 +1,3 @@
+## 2025-05-15 - Global Focus Indicators for Accessibility
+**Learning:** In highly customized or "dark mode" themed portfolios, default browser focus indicators (outlines) are often suppressed (e.g., via `outline: none`) or lack sufficient contrast against the dark background, breaking keyboard navigation.
+**Action:** Always implement a custom `:focus-visible` ring using the theme's brand or accent color with an `outline-offset` to ensure high visibility for keyboard users without affecting mouse users. Specifically, audit for and remove any `outline: none` on interactive elements like mobile menu toggles.
