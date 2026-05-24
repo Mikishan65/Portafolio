@@ -72,6 +72,12 @@ a {
   transition: color 0.3s ease;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 a:hover {
   color: var(--brand);
 }
@@ -200,7 +206,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -496,12 +501,6 @@ a:hover {
   transition: all 0.3s ease;
 }
 
-.tag-pill:hover {
-  color: #fff;
-  border-color: var(--brand);
-  background: rgba(0, 242, 254, 0.1);
-  transform: translateY(-2px);
-}
 
 .tag-pill i {
   color: var(--brand);
@@ -1336,15 +1335,7 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
   background: transparent;
-}
-
-.project-row:hover, .experience-row:hover {
-  background: rgba(255, 255, 255, 0.02);
-  padding-left: 2rem;
-  padding-right: 2rem;
-  border-color: var(--brand);
 }
 
 .huge-text {
@@ -1355,10 +1346,6 @@ a:hover {
   color: #fff;
   transition: color 0.3s ease;
   line-height: 1;
-}
-
-.project-row:hover .huge-text, .experience-row:hover .huge-text {
-  color: var(--brand);
 }
 
 .project-desc {
@@ -1372,11 +1359,6 @@ a:hover {
   font-size: 4rem;
   color: rgba(255,255,255,0.1);
   transition: all 0.4s ease;
-}
-
-.project-row:hover .project-row-icon i {
-  color: var(--accent);
-  transform: rotate(15deg) scale(1.2);
 }
 
 .experience-row {
