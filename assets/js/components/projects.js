@@ -10,7 +10,7 @@ function renderProject(project, index) {
           ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
         </div>
       </div>
-      <div class="project-row-icon"><i class="${project.icon}"></i></div>
+      <div class="project-row-icon"><i class="${project.icon}" aria-hidden="true"></i></div>
     </article>
   `;
 }
