@@ -76,6 +76,18 @@ a:hover {
   color: var(--brand);
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.nav-cta:focus-visible,
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: -3px;
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -200,7 +212,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -423,8 +434,8 @@ a:hover {
   padding: 1rem 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
   z-index: 1;
+  overflow: hidden;
 }
 
 .btn-main {
