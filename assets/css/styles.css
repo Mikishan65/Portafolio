@@ -23,6 +23,11 @@
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -200,7 +205,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
