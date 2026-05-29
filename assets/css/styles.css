@@ -17,6 +17,12 @@
   --cursor-y: 12vh;
 }
 
+/* Accessibility: Focus States */
+:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 2px;
+}
+
 *,
 *::before,
 *::after {
@@ -200,7 +206,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -425,6 +430,11 @@ a:hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: -3px !important;
 }
 
 .btn-main {
