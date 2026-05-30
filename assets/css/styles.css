@@ -198,9 +198,9 @@ a:hover {
   color: var(--ink);
 }
 
-.nav-toggle:focus {
-  box-shadow: none;
-  outline: none;
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }
 
 .nav-cta {
@@ -496,12 +496,6 @@ a:hover {
   transition: all 0.3s ease;
 }
 
-.tag-pill:hover {
-  color: #fff;
-  border-color: var(--brand);
-  background: rgba(0, 242, 254, 0.1);
-  transform: translateY(-2px);
-}
 
 .tag-pill i {
   color: var(--brand);
@@ -1336,15 +1330,8 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
+  cursor: auto;
   background: transparent;
-}
-
-.project-row:hover, .experience-row:hover {
-  background: rgba(255, 255, 255, 0.02);
-  padding-left: 2rem;
-  padding-right: 2rem;
-  border-color: var(--brand);
 }
 
 .huge-text {
@@ -1357,9 +1344,6 @@ a:hover {
   line-height: 1;
 }
 
-.project-row:hover .huge-text, .experience-row:hover .huge-text {
-  color: var(--brand);
-}
 
 .project-desc {
   font-size: 1.2rem;
@@ -1374,10 +1358,6 @@ a:hover {
   transition: all 0.4s ease;
 }
 
-.project-row:hover .project-row-icon i {
-  color: var(--accent);
-  transform: rotate(15deg) scale(1.2);
-}
 
 .experience-row {
   align-items: flex-start;
@@ -1435,10 +1415,6 @@ a:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 3rem 0;
-  }
-  .project-row:hover, .experience-row:hover {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
   .exp-right {
     text-align: left;
