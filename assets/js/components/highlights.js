@@ -18,7 +18,7 @@ export function createHighlightsSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Fortalezas</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-star"></i></span>Certificaciones y habilidades</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-star" aria-hidden="true"></i></span>Certificaciones y habilidades</h2>
           <p class="section-subtitle">Formacion complementaria y stack con el que puedo aportar desde el primer sprint.</p>
         </div>
 
