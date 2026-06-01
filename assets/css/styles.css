@@ -23,6 +23,11 @@
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -200,7 +205,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -220,6 +224,10 @@ a:hover {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+.nav-cta:focus-visible {
+  outline-offset: -3px;
 }
 
 .nav-cta::before {
@@ -425,6 +433,11 @@ a:hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: -3px;
 }
 
 .btn-main {
