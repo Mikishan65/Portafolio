@@ -1,0 +1,3 @@
+## 2026-06-04 - [Micro-UX Accessibility and Affordance]
+**Learning:** For interactive elements where `overflow: hidden` is used to contain animations (like background glimmers), standard focus outlines are clipped by the container boundary. Also, using `cursor: pointer` on non-interactive elements creates false affordances that confuse users.
+**Action:** Use an inset `outline-offset` (e.g., `-3px`) for elements with `overflow: hidden`. Ensure `cursor: pointer` is strictly reserved for clickable elements. Always add `aria-hidden="true"` to decorative FontAwesome icons to reduce screen reader noise.

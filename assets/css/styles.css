@@ -203,6 +203,18 @@ a:hover {
   outline: none;
 }
 
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.nav-cta:focus-visible,
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: -3px;
+}
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -1336,7 +1348,7 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
+  cursor: auto;
   background: transparent;
 }
 
