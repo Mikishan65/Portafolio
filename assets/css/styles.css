@@ -200,7 +200,6 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
 }
 
 .nav-cta {
@@ -220,6 +219,10 @@ a:hover {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+}
+
+.nav-cta:focus-visible {
+  outline-offset: -3px;
 }
 
 .nav-cta::before {
@@ -425,6 +428,11 @@ a:hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: -3px;
 }
 
 .btn-main {
@@ -1336,7 +1344,7 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
+  cursor: auto;
   background: transparent;
 }
 
