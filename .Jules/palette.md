@@ -1,0 +1,3 @@
+## 2026-06-06 - Accessibility and Interaction Clarity
+**Learning:** Interactive elements with `overflow: hidden` (often used to contain background animations or glimmers) will clip standard CSS focus outlines that extend outwards. Additionally, non-interactive containers should never use `cursor: pointer` as it creates a false affordance of clickability. Decorative icons must always be hidden from screen readers to prevent noisy announcements of internal codes or classes.
+**Action:** Always use an inset `outline-offset` (e.g., -3px) for focused elements with `overflow: hidden`. Audit the entire component library for decorative icons missing `aria-hidden="true"`. Strict enforcement of `cursor: pointer` only on actually clickable elements improves cognitive clarity.
