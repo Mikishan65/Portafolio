@@ -1,0 +1,3 @@
+## 2026-06-11 - Accessibility and Interaction Clarity
+**Learning:** Interactive elements using `overflow: hidden` to contain background animations will clip standard focus outlines. Additionally, non-interactive elements with `cursor: pointer` create false affordances that confuse users. Bootstrap 5's default `:focus` styles on togglers can also interfere with custom accessibility outlines.
+**Action:** Use an inset `outline-offset` (e.g., `-3px`) for elements with hidden overflow. Always verify that `cursor: pointer` is reserved for truly interactive/clickable elements. Use `!important` when necessary to override framework focus resets on critical navigation components like `.nav-toggle`.
