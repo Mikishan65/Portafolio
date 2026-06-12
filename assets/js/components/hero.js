@@ -44,8 +44,8 @@ export function createHero() {
               </p>
 
               <div class="hero-actions">
-                <a class="btn-main" href="#projects"><i class="fa-solid fa-code-branch"></i>Ver proyectos</a>
-                <a class="btn-ghost" href="#contact"><i class="fa-solid fa-paper-plane"></i>Contactar</a>
+                <a class="btn-main" href="#projects"><i class="fa-solid fa-code-branch" aria-hidden="true"></i>Ver proyectos</a>
+                <a class="btn-ghost" href="#contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i>Contactar</a>
               </div>
 
               <div class="tag-list">

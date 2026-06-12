@@ -31,7 +31,7 @@ export function createContactSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Contacto</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-paper-plane"></i></span>Disponible para colaborar</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></span>Disponible para colaborar</h2>
           <p class="section-subtitle">Si quieres conversar sobre oportunidades o proyectos, escribeme por el canal que te quede mejor.</p>
         </div>
 
