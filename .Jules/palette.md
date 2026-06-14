@@ -1,0 +1,3 @@
+## 2025-05-14 - Accessibility and Focus Visibility
+**Learning:** In projects using Bootstrap, default focus outlines are often removed (`outline: 0`). To ensure accessibility for keyboard users, a global `:focus-visible` style should be restored. For elements with `overflow: hidden` (like buttons with glimmer effects), an inset `outline-offset` (e.g., -3px) is necessary to prevent the focus ring from being clipped.
+**Action:** Always check for `outline: none` or `outline: 0` in the CSS and replace with a brand-aligned `:focus-visible` style, using negative `outline-offset` for containers that clip their children.
