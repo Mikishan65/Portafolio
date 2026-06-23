@@ -19,7 +19,7 @@ export function createNavbar() {
           aria-expanded="false"
           aria-label="Abrir menu"
         >
-          <i class="fa-solid fa-bars"></i>
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
