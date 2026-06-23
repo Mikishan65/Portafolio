@@ -1,0 +1,3 @@
+## 2025-05-15 - Accessibility and Interaction Polish
+**Learning:** For interactive elements where `overflow: hidden` is used to contain animations (like background glimmers), standard focus outlines are clipped. Additionally, Bootstrap 5 may set `outline: 0` on certain elements like the navbar toggler, requiring `!important` to ensure custom focus indicators are visible.
+**Action:** Use an inset `outline-offset` (e.g., -3px) for elements with `overflow: hidden` to ensure focus rings remain visible within the container boundary. Always check and override Bootstrap's focus suppression on critical interactive elements.
