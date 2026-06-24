@@ -1,0 +1,3 @@
+## 2024-06-24 - Accessibility and Interaction Clarity Improvements
+**Learning:** Decorative icons and markers (like row indices) should be marked with aria-hidden="true" to reduce noise for screen reader users, and false affordances like cursor: pointer on non-interactive elements should be corrected. Focus indicators for elements with overflow: hidden require inset outlines (negative outline-offset) to prevent clipping.
+**Action:** Always audit component libraries for decorative icons missing aria-hidden, verify interactive cursor affordances, and implement robust sitewide :focus-visible styles that account for container boundary clipping.
