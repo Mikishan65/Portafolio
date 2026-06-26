@@ -20,7 +20,7 @@ export function createTechnologiesSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Tecnologias</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-laptop-code"></i></span>Stack de trabajo</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>Stack de trabajo</h2>
           <p class="section-subtitle">Herramientas que uso para desarrollar, probar y desplegar.</p>
         </div>
 
