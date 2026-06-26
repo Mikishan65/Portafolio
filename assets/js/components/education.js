@@ -23,7 +23,7 @@ export function createEducationSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Educacion</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-graduation-cap"></i></span>Formacion academica</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>Formacion academica</h2>
           <p class="section-subtitle">Base tecnica y academica para desarrollo de software.</p>
         </div>
 
