@@ -1,0 +1,3 @@
+## 2025-05-15 - Accessibility and Interaction Clarity
+**Learning:** For interactive elements where overflow: hidden is used to contain animations (like background glimmers), use an inset outline-offset (e.g., -3px) to ensure keyboard focus visibility is not clipped by the container boundary. Additionally, decorative icons or their immediate parent containers in components must include aria-hidden="true" to be hidden from the accessibility tree. Non-interactive rows with hover animations should use cursor: default to avoid false affordances.
+**Action:** Always implement :focus-visible with appropriate offsets (inset for overflow: hidden) and ensure all decorative icons are hidden from screen readers.
