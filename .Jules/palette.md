@@ -1,0 +1,3 @@
+## 2025-05-14 - Focus Visibility and Interaction Clarity
+**Learning:** For interactive elements where `overflow: hidden` is used to contain animations (like background glimmers), standard focus outlines can be clipped by the container boundary. Using a negative `outline-offset` (e.g., -3px) ensures the focus ring is visible inside the element. Additionally, non-interactive elements with hover animations (like `.project-row`) can create "false affordances" if they use `cursor: pointer`.
+**Action:** Use inset focus rings for animated buttons and ensure `cursor: default` is used for non-clickable elements to maintain interaction clarity.
