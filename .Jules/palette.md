@@ -1,0 +1,3 @@
+## 2026-07-01 - Accessibility and Interaction Clarity
+**Learning:** Decorative icons missing `aria-hidden="true"` create unnecessary noise for screen readers. Additionally, global resets like `outline: none` on interactive elements (like the mobile nav toggle) break keyboard accessibility. Finally, using `cursor: pointer` on non-interactive elements creates a false affordance that confuses users.
+**Action:** Always audit icons for `aria-hidden`, ensure `:focus-visible` provides a clear indicator (especially when Bootstrap or other frameworks might suppress it), and verify that the `cursor` property accurately reflects an element's interactivity.
