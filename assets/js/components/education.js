@@ -7,7 +7,7 @@ function renderEducation(item, index) {
   return `
     <article class="rail-item reveal" data-reveal="${direction}" style="--delay: ${70 + index * 70}ms">
       <span class="rail-number">${marker}</span>
-      <div class="rail-icon"><i class="${item.icon}"></i></div>
+      <div class="rail-icon" aria-hidden="true"><i class="${item.icon}"></i></div>
       <div class="rail-copy">
         <p class="rail-label">${item.subtitle}</p>
         <h3>${item.title}</h3>
@@ -23,7 +23,7 @@ export function createEducationSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Educacion</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-graduation-cap"></i></span>Formacion academica</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>Formacion academica</h2>
           <p class="section-subtitle">Base tecnica y academica para desarrollo de software.</p>
         </div>
 

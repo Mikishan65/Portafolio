@@ -200,7 +200,21 @@ a:hover {
 
 .nav-toggle:focus {
   box-shadow: none;
-  outline: none;
+}
+
+.nav-link:focus-visible,
+.brand-mark:focus-visible,
+.nav-toggle:focus-visible,
+.social-links a:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 4px;
+}
+
+.nav-cta:focus-visible,
+.btn-main:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: -3px;
 }
 
 .nav-cta {
@@ -1336,7 +1350,7 @@ a:hover {
   padding: 4rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  cursor: pointer;
+  cursor: default;
   background: transparent;
 }
 
@@ -1435,6 +1449,7 @@ a:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 3rem 0;
+    cursor: default;
   }
   .project-row:hover, .experience-row:hover {
     padding-left: 1rem;
