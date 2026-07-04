@@ -5,7 +5,7 @@ function renderTech(item, index) {
 
   return `
     <article class="stack-line reveal" data-reveal="${direction}" style="--delay: ${index * 55}ms">
-      <div class="stack-line-icon" style="--tech-color: ${item.color}"><i class="${item.icon}"></i></div>
+      <div class="stack-line-icon" style="--tech-color: ${item.color}" aria-hidden="true"><i class="${item.icon}" aria-hidden="true"></i></div>
       <div class="stack-line-copy">
         <h3>${item.name}</h3>
         <p>${item.detail}</p>
@@ -20,7 +20,7 @@ export function createTechnologiesSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Tecnologias</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-laptop-code"></i></span>Stack de trabajo</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>Stack de trabajo</h2>
           <p class="section-subtitle">Herramientas que uso para desarrollar, probar y desplegar.</p>
         </div>
 
