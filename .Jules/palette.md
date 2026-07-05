@@ -1,0 +1,3 @@
+## 2025-07-05 - Accessibility and Interaction Clarity
+**Learning:** Decorative visual markers like .focus-index (in about.js) and .rail-number (in education.js) should be marked with aria-hidden="true" to reduce screen reader noise, even if they contain text, when that text is redundant or purely stylistic. Also, focus indicator clipping in elements with overflow: hidden can be solved by using a negative outline-offset (inset focus ring).
+**Action:** Always check for overflow: hidden on interactive elements and apply inset focus styles. Ensure all purely decorative markers are excluded from the accessibility tree.
