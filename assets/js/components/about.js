@@ -6,7 +6,7 @@ function renderFocus(item, index) {
 
   return `
     <div class="focus-line reveal" data-reveal="${direction}" style="--delay: ${80 + index * 60}ms">
-      <span class="focus-index">${marker}</span>
+      <span class="focus-index" aria-hidden="true">${marker}</span>
       <p>${item}</p>
     </div>
   `;
@@ -36,7 +36,7 @@ export function createAboutSection() {
       <div class="container info-shell">
         <div class="section-head reveal" data-reveal="left">
           <p class="eyebrow">Sobre mi</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-user"></i></span>Perfil profesional</h2>
+          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-user" aria-hidden="true"></i></span>Perfil profesional</h2>
           <p class="section-subtitle">
             Aprendizaje rapido, pensamiento analitico y foco en entregables que funcionen en produccion.
           </p>
