@@ -2,7 +2,7 @@ import { experienceEntries } from "../data/portfolioData.js";
 
 function renderExperience(entry, index) {
   return `
-    <div class="experience-row reveal" style="--delay: ${index * 90}ms">
+    <article class="experience-row reveal" style="--delay: ${index * 90}ms">
       <div class="exp-left">
         <h3 class="huge-text">${entry.company}</h3>
         <p class="exp-role">${entry.role}</p>
@@ -13,7 +13,7 @@ function renderExperience(entry, index) {
           ${entry.tasks.map((task) => `<li>${task}</li>`).join("")}
         </ul>
       </div>
-    </div>
+    </article>
   `;
 }
 
