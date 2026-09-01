@@ -1,66 +1,36 @@
-import { aboutFocus, siteMeta } from "../data/portfolioData.js";
+import { aboutFocus, profilePillars, siteMeta } from "../data/portfolioData.js";
 
-function renderFocus(item, index) {
-  const direction = index % 2 === 0 ? "left" : "right";
-  const marker = String(index + 1).padStart(2, "0");
-
+function renderPillar(pillar, index) {
   return `
-    <div class="focus-line reveal" data-reveal="${direction}" style="--delay: ${80 + index * 60}ms">
-      <span class="focus-index">${marker}</span>
-      <p>${item}</p>
-    </div>
-  `;
-}
-
-function renderSignal(item, index) {
-  const direction = index % 2 === 0 ? "right" : "left";
-
-  return `
-    <div class="signal-item reveal" data-reveal="${direction}" style="--delay: ${180 + index * 60}ms">
-      <span class="signal-label">${item.label}</span>
-      <strong class="signal-value">${item.value}</strong>
-    </div>
+    <article class="system-node system-node-${index + 1} reveal">
+      <span class="node-icon"><i class="${pillar.icon}" aria-hidden="true"></i></span>
+      <div><h3>${pillar.title}</h3><p>${pillar.desc}</p></div>
+    </article>
   `;
 }
 
 export function createAboutSection() {
-  const profileSignals = [
-    { label: "Area", value: "Full Stack" },
-    { label: "Metodo", value: "QA + ejecucion" },
-    { label: "Trabajo", value: "Git y colaboracion" },
-    { label: "Infra", value: "Azure y despliegue" }
-  ];
-
   return `
-    <section id="about" class="section-block">
-      <div class="container info-shell">
-        <div class="section-head reveal" data-reveal="left">
-          <p class="eyebrow">Sobre mi</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-user"></i></span>Perfil profesional</h2>
-          <p class="section-subtitle">
-            Aprendizaje rapido, pensamiento analitico y foco en entregables que funcionen en produccion.
-          </p>
+    <section id="about" class="section about-section">
+      <div class="section-shell">
+        <div class="about-manifesto reveal">
+          <p class="section-label">Mi forma de trabajar</p>
+          <h2>No me quedo en una sola capa del problema.</h2>
+          <p class="manifesto-copy">Entiendo el producto, construyo la solución, compruebo su calidad y acompaño su llegada a producción. Esa amplitud me permite adaptarme sin perder el foco práctico.</p>
         </div>
 
-        <div class="info-stream">
-          <article class="info-anchor reveal" data-reveal="left" style="--delay: 60ms">
-            <span class="anchor-mark">Perfil</span>
-            <h3>${siteMeta.role}</h3>
-            <p>
-              Trabajo con desarrollo web y movil, uso Git/GitHub para colaboracion y acompano cada entrega con pruebas
-              funcionales para reducir errores antes de publicar.
-            </p>
-          </article>
-
-          <div class="info-flow">
-            <div class="focus-stream">
-              ${aboutFocus.map(renderFocus).join("")}
-            </div>
-
-            <div class="signal-stack">
-              ${profileSignals.map(renderSignal).join("")}
-            </div>
+        <div class="system-map" role="group" aria-label="Áreas de dominio">
+          <div class="system-core reveal" data-tilt>
+            <span>Ingeniería integral</span>
+            <strong><span>Código</span><span>a</span><span class="core-word">producción</span></strong>
+            <small>${siteMeta.locationShort}</small>
           </div>
+          ${profilePillars.map(renderPillar).join("")}
+        </div>
+
+        <div class="principles-strip">
+          <p>Lo que guía cada entrega</p>
+          <ul>${aboutFocus.map((item) => `<li class="reveal"><span aria-hidden="true">↗</span>${item}</li>`).join("")}</ul>
         </div>
       </div>
     </section>

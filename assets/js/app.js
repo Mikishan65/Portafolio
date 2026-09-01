@@ -1,4 +1,5 @@
-﻿import { createAboutSection } from "./components/about.js";
+import { createAboutSection } from "./components/about.js";
+import { createCertificationsSection } from "./components/certifications.js";
 import { createContactSection } from "./components/contact.js";
 import { createEducationSection } from "./components/education.js";
 import { createExperienceSection } from "./components/experience.js";
@@ -15,12 +16,13 @@ export function renderApp(rootElement) {
   rootElement.innerHTML = `
     ${createNavbar()}
     ${createHero()}
-    <main>
-      ${createAboutSection()}
-      ${createExperienceSection()}
-      ${createEducationSection()}
-      ${createTechnologiesSection()}
+    <main id="main-content">
       ${createProjectsSection()}
+      ${createExperienceSection()}
+      ${createAboutSection()}
+      ${createTechnologiesSection()}
+      ${createCertificationsSection()}
+      ${createEducationSection()}
       ${createHighlightsSection()}
       ${createContactSection()}
     </main>

@@ -1,34 +1,50 @@
-import { educationEntries } from "../data/portfolioData.js";
-
-function renderEducation(item, index) {
-  const marker = String(index + 1).padStart(2, "0");
-  const direction = index % 2 === 0 ? "left" : "right";
-
-  return `
-    <article class="rail-item reveal" data-reveal="${direction}" style="--delay: ${70 + index * 70}ms">
-      <span class="rail-number">${marker}</span>
-      <div class="rail-icon"><i class="${item.icon}"></i></div>
-      <div class="rail-copy">
-        <p class="rail-label">${item.subtitle}</p>
-        <h3>${item.title}</h3>
-        <p>${item.detail}</p>
-      </div>
-    </article>
-  `;
-}
+import { academicHighlights, educationEntries } from "../data/portfolioData.js";
 
 export function createEducationSection() {
   return `
-    <section id="education" class="section-block">
-      <div class="container info-shell">
-        <div class="section-head reveal" data-reveal="left">
-          <p class="eyebrow">Educacion</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-graduation-cap"></i></span>Formacion academica</h2>
-          <p class="section-subtitle">Base tecnica y academica para desarrollo de software.</p>
+    <section id="education" class="section education-section">
+      <div class="section-shell">
+        <div class="education-title reveal">
+          <p class="section-label">Formación</p>
+          <h2>Una base académica que sí se puede comprobar.</h2>
         </div>
 
-        <div class="rail-list education-rail">
-          ${educationEntries.map(renderEducation).join("")}
+        <div class="academic-proof">
+          <div class="proof-summary reveal">
+            <strong>54</strong>
+            <span>materias aprobadas</span>
+            <p>Plan de Ingeniería de Sistemas culminado en la UDI, en etapa final de titulación.</p>
+          </div>
+          <div class="score-ribbon" role="list" aria-label="Calificaciones destacadas">
+            ${academicHighlights
+              .slice(0, 5)
+              .map(
+                (item) => `
+                <article class="score-item reveal" role="listitem">
+                  <strong>${item.score}</strong>
+                  <h3>${item.subject}</h3>
+                  <p>${item.note}</p>
+                </article>`
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <div class="education-path">
+          ${educationEntries
+            .map(
+              (entry) => `
+              <article class="education-entry reveal">
+                <span><i class="${entry.icon}" aria-hidden="true"></i></span>
+                <div>
+                  <p>${entry.period} · ${entry.statusBadge}</p>
+                  <h3>${entry.title}</h3>
+                  <strong>${entry.subtitle}</strong>
+                  <p>${entry.detail}</p>
+                </div>
+              </article>`
+            )
+            .join("")}
         </div>
       </div>
     </section>

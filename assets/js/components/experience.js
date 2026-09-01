@@ -2,34 +2,39 @@ import { experienceEntries } from "../data/portfolioData.js";
 
 function renderExperience(entry, index) {
   return `
-    <div class="experience-row reveal" style="--delay: ${index * 90}ms">
-      <div class="exp-left">
-        <h3 class="huge-text">${entry.company}</h3>
-        <p class="exp-role">${entry.role}</p>
+    <li class="route-stop reveal">
+      <div class="route-time">
+        <span class="route-number">${String(index + 1).padStart(2, "0")}</span>
+        <span>${entry.period}</span>
       </div>
-      <div class="exp-right">
-        <p class="exp-period">${entry.period}</p>
-        <ul class="exp-tasks">
+      <article class="route-content">
+        <div class="route-heading">
+          <div>
+            <p>${entry.company}</p>
+            <h3>${entry.role}</h3>
+          </div>
+          <span class="route-badge">${entry.badge}</span>
+        </div>
+        <ul class="route-tasks">
           ${entry.tasks.map((task) => `<li>${task}</li>`).join("")}
         </ul>
-      </div>
-    </div>
+        <div class="route-tags">${entry.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
+      </article>
+    </li>
   `;
 }
 
 export function createExperienceSection() {
   return `
-    <section id="experience" class="section-block god-section">
-      <div class="container-fluid">
-        <div class="section-head reveal">
-          <p class="eyebrow">Trayectoria</p>
-          <h2 class="massive-title experience-title">Experiencia</h2>
+    <section id="experience" class="section experience-section">
+      <div class="section-shell experience-layout">
+        <div class="experience-sticky reveal">
+          <p class="section-label">Trayectoria</p>
+          <h2>Aprender rápido.<br>Resolver mejor.<br><em>Entregar estable.</em></h2>
+          <p>Una ruta que une salud, control de calidad, equipos ágiles e infraestructura para clientes.</p>
         </div>
-        <div class="experience-list">
-          ${experienceEntries.map(renderExperience).join("")}
-        </div>
+        <ol class="route-list">${experienceEntries.map(renderExperience).join("")}</ol>
       </div>
     </section>
   `;
 }
-

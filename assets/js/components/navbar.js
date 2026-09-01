@@ -1,33 +1,39 @@
-﻿import { navItems, siteMeta } from "../data/portfolioData.js";
+import { siteMeta } from "../data/portfolioData.js";
+
+const primaryNav = [
+  { id: "projects", label: "Trabajo" },
+  { id: "experience", label: "Trayectoria" },
+  { id: "about", label: "Perfil" },
+  { id: "certifications", label: "Evidencia" },
+  { id: "contact", label: "Contacto" }
+];
 
 export function createNavbar() {
-  const links = navItems
-    .map((item) => `<li class="nav-item"><a class="nav-link" href="#${item.id}">${item.label}</a></li>`)
+  const links = primaryNav
+    .map((item) => `<li><a class="nav-link" href="#${item.id}">${item.label}</a></li>`)
     .join("");
 
   return `
-    <a class="skip-link" href="#about">Saltar al contenido</a>
-    <nav id="topnav" class="navbar navbar-expand-lg fixed-top site-nav">
-      <div class="container">
-        <a class="navbar-brand brand-mark" href="#home">${siteMeta.shortName}</a>
-        <button
-          class="navbar-toggler nav-toggle"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Abrir menu"
-        >
-          <i class="fa-solid fa-bars"></i>
-        </button>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <nav id="topnav" class="site-nav" aria-label="Navegación principal">
+      <a class="brand-mark" href="#home" aria-label="Volver al inicio">
+        <span class="brand-symbol" aria-hidden="true">M/AC</span>
+        <span class="brand-copy">
+          <strong>${siteMeta.shortName}</strong>
+          <small>Ingeniería que llega a producción</small>
+        </span>
+      </a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-            ${links}
-            <li class="nav-item"><a class="nav-cta" href="#contact">Hablemos</a></li>
-          </ul>
-        </div>
+      <button class="nav-toggle" type="button" aria-controls="nav-menu" aria-expanded="false">
+        <span class="nav-toggle-label">Menú</span>
+        <span class="nav-toggle-lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
+
+      <div class="nav-panel" id="nav-menu">
+        <ul class="nav-list">${links}</ul>
+        <a class="nav-contact" href="${siteMeta.whatsappUrl}" target="_blank" rel="noopener noreferrer">
+          Hablemos <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
       </div>
     </nav>
   `;

@@ -1,42 +1,41 @@
 import { technologies } from "../data/portfolioData.js";
 
-function renderTech(item, index) {
-  const direction = index % 2 === 0 ? "left" : "right";
+const categoryLabels = {
+  frontend: "Experiencias",
+  backend: "Lógica y APIs",
+  devops: "Producción",
+  qa: "Calidad",
+  database: "Datos",
+  tools: "Flujo de trabajo"
+};
 
+function renderTechnology(technology, index) {
   return `
-    <article class="stack-line reveal" data-reveal="${direction}" style="--delay: ${index * 55}ms">
-      <div class="stack-line-icon" style="--tech-color: ${item.color}"><i class="${item.icon}"></i></div>
-      <div class="stack-line-copy">
-        <h3>${item.name}</h3>
-        <p>${item.detail}</p>
-      </div>
-    </article>
+    <li class="tech-word tech-word-${(index % 5) + 1} reveal" tabindex="0">
+      <i class="${technology.icon}" aria-hidden="true"></i>
+      <span>${technology.name}</span>
+      <small>${technology.detail}</small>
+    </li>
   `;
 }
 
 export function createTechnologiesSection() {
+  const categories = [...new Set(technologies.map((technology) => technology.category))];
+
   return `
-    <section id="technologies" class="section-block">
-      <div class="container info-shell">
-        <div class="section-head reveal" data-reveal="left">
-          <p class="eyebrow">Tecnologias</p>
-          <h2 class="section-title"><span class="icon-badge"><i class="fa-solid fa-laptop-code"></i></span>Stack de trabajo</h2>
-          <p class="section-subtitle">Herramientas que uso para desarrollar, probar y desplegar.</p>
-        </div>
-
-        <div class="stack-layout">
-          <div class="stack-copy reveal" data-reveal="left" style="--delay: 70ms">
-            <span class="anchor-mark">Stack</span>
-            <h3>Tecnologia al servicio del producto, no de la decoracion.</h3>
-            <p>
-              Frontend, backend, datos, testing y despliegue organizados como un flujo continuo de trabajo.
-            </p>
-          </div>
-
-          <div class="stack-lines">
-            ${technologies.map(renderTech).join("")}
+    <section id="technologies" class="section technology-section">
+      <div class="section-shell technology-layout">
+        <div class="technology-intro reveal">
+          <p class="section-label">Caja de herramientas</p>
+          <h2>La tecnología cambia. La capacidad de aprender, no.</h2>
+          <p>Trabajo con un stack amplio porque cada problema pide una combinación distinta. Toca o enfoca cada herramienta para ver dónde la aplico.</p>
+          <div class="category-key">
+            ${categories.map((category) => `<span>${categoryLabels[category] || category}</span>`).join("")}
           </div>
         </div>
+        <ul class="tech-cloud" aria-label="Tecnologías y herramientas">
+          ${technologies.map(renderTechnology).join("")}
+        </ul>
       </div>
     </section>
   `;

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-01T02:45:00Z",
+  "title": "Design System: Taller Cinético",
+  "extensions": {
+    "colorMeta": {
+      "ultramarine-motion": {
+        "role": "primary",
+        "displayName": "Ultramarino en movimiento",
+        "canonical": "oklch(57% 0.245 280)",
+        "tonalRamp": ["oklch(15% 0.08 280)", "oklch(27% 0.13 280)", "oklch(39% 0.18 280)", "oklch(51% 0.22 280)", "oklch(63% 0.22 280)", "oklch(75% 0.17 280)", "oklch(87% 0.09 280)", "oklch(95% 0.03 280)"]
+      },
+      "ultramarine-deep": {
+        "role": "primary",
+        "displayName": "Ultramarino profundo",
+        "canonical": "oklch(44% 0.22 280)",
+        "tonalRamp": ["oklch(15% 0.08 280)", "oklch(25% 0.13 280)", "oklch(35% 0.18 280)", "oklch(45% 0.21 280)", "oklch(58% 0.2 280)", "oklch(71% 0.15 280)", "oklch(84% 0.09 280)", "oklch(95% 0.03 280)"]
+      },
+      "workshop-ink": {
+        "role": "neutral",
+        "displayName": "Tinta de taller",
+        "canonical": "oklch(17% 0.025 270)",
+        "tonalRamp": ["oklch(12% 0.02 270)", "oklch(23% 0.025 270)", "oklch(35% 0.025 270)", "oklch(47% 0.022 270)", "oklch(59% 0.02 270)", "oklch(71% 0.016 270)", "oklch(84% 0.01 270)", "oklch(96% 0.005 270)"]
+      },
+      "cool-canvas": {
+        "role": "neutral",
+        "displayName": "Lienzo frío",
+        "canonical": "oklch(97% 0.009 265)",
+        "tonalRamp": ["oklch(15% 0.01 265)", "oklch(27% 0.01 265)", "oklch(39% 0.01 265)", "oklch(51% 0.01 265)", "oklch(63% 0.01 265)", "oklch(75% 0.01 265)", "oklch(87% 0.009 265)", "oklch(97% 0.009 265)"]
+      },
+      "pure-white": {
+        "role": "neutral",
+        "displayName": "Blanco puro",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(100% 0 0)"]
+      },
+      "cool-muted": {
+        "role": "neutral",
+        "displayName": "Texto frío atenuado",
+        "canonical": "oklch(77% 0.02 265)",
+        "tonalRamp": ["oklch(15% 0.015 265)", "oklch(27% 0.018 265)", "oklch(39% 0.02 265)", "oklch(51% 0.02 265)", "oklch(63% 0.02 265)", "oklch(77% 0.02 265)", "oklch(87% 0.015 265)", "oklch(95% 0.008 265)"]
+      },
+      "cool-soft": {
+        "role": "neutral",
+        "displayName": "Texto frío suave",
+        "canonical": "oklch(91% 0.02 275)",
+        "tonalRamp": ["oklch(15% 0.015 275)", "oklch(27% 0.018 275)", "oklch(39% 0.02 275)", "oklch(51% 0.02 275)", "oklch(63% 0.02 275)", "oklch(75% 0.02 275)", "oklch(87% 0.02 275)", "oklch(95% 0.01 275)"]
+      },
+      "solar-yellow": {
+        "role": "secondary",
+        "displayName": "Amarillo solar",
+        "canonical": "oklch(88% 0.18 94)",
+        "tonalRamp": ["oklch(15% 0.05 94)", "oklch(27% 0.08 94)", "oklch(39% 0.11 94)", "oklch(51% 0.14 94)", "oklch(63% 0.17 94)", "oklch(75% 0.18 94)", "oklch(87% 0.18 94)", "oklch(95% 0.1 94)"]
+      },
+      "action-coral": {
+        "role": "secondary",
+        "displayName": "Coral de acción",
+        "canonical": "oklch(68% 0.22 36)",
+        "tonalRamp": ["oklch(15% 0.06 36)", "oklch(27% 0.1 36)", "oklch(39% 0.14 36)", "oklch(51% 0.18 36)", "oklch(63% 0.21 36)", "oklch(75% 0.18 36)", "oklch(87% 0.1 36)", "oklch(95% 0.04 36)"]
+      },
+      "proof-mint": {
+        "role": "tertiary",
+        "displayName": "Menta de evidencia",
+        "canonical": "oklch(84% 0.17 158)",
+        "tonalRamp": ["oklch(15% 0.05 158)", "oklch(27% 0.08 158)", "oklch(39% 0.11 158)", "oklch(51% 0.14 158)", "oklch(63% 0.16 158)", "oklch(75% 0.17 158)", "oklch(87% 0.14 158)", "oklch(95% 0.06 158)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Titular cinético", "purpose": "Tesis del hero y una idea dominante por sección." },
+      "body": { "displayName": "Lectura inclusiva", "purpose": "Texto profesional legible en cualquier dispositivo." },
+      "utility": { "displayName": "Dato técnico", "purpose": "Fechas, categorías y estado operativo reales." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Entradas, respuesta táctil y desplazamientos cortos." },
+      { "name": "orbit", "value": "28s linear infinite", "purpose": "Movimiento ambiental único alrededor del retrato." },
+      { "name": "bubble-drift", "value": "5.2s ease-in-out infinite", "purpose": "Flotación independiente de las tecnologías del hero." },
+      { "name": "bubble-pop", "value": "680ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Explosión breve activada por toque, clic o teclado." }
+    ],
+    "breakpoints": [
+      { "name": "compact-desktop", "value": "1040px" },
+      { "name": "tablet", "value": "820px" },
+      { "name": "mobile", "value": "600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de alto contraste.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Explorar mi trabajo <span aria-hidden=\"true\">↓</span></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:13px 20px;color:var(--white,#fff);background:var(--ink,#171721);border:2px solid var(--ink,#171721);border-radius:999px;font:800 1rem 'Inclusive Sans',sans-serif;text-decoration:none;transition:transform .22s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{transform:translateY(-3px) rotate(-1deg)}.ds-btn-primary:focus-visible{outline:3px solid var(--solar,#ffd84d);outline-offset:4px}"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-active",
+      "description": "Filtro táctil con estado presionado accesible.",
+      "html": "<button class=\"ds-filter\" type=\"button\" aria-pressed=\"true\">Infraestructura</button>",
+      "css": ".ds-filter{min-height:44px;padding:9px 15px;color:#fff;background:#171721;border:1px solid #171721;border-radius:999px;font:700 .88rem 'Inclusive Sans',sans-serif;transition:transform .16s cubic-bezier(.16,1,.3,1)}.ds-filter:hover{transform:translateY(-2px)}.ds-filter:focus-visible{outline:3px solid #ffd84d;outline-offset:3px}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "Enlace compacto que invierte color en estado activo.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Trayectoria</a>",
+      "css": ".ds-nav-link{display:inline-flex;min-height:46px;align-items:center;padding:10px 14px;color:#fff;background:#171721;border-radius:999px;font:700 .88rem 'Inclusive Sans',sans-serif;text-decoration:none;transition:color .18s,background-color .18s}.ds-nav-link:hover,.ds-nav-link:focus-visible{color:#171721;background:#fff}.ds-nav-link:focus-visible{outline:3px solid #ffd84d;outline-offset:3px}"
+    },
+    {
+      "name": "Project Case",
+      "kind": "custom",
+      "description": "Registro de proyecto amplio que sustituye la tarjeta repetida.",
+      "html": "<article class=\"ds-project\"><small>Infraestructura · Implementado</small><h3>VPS y despliegue con Dokploy</h3><p>Configuración integral de producción, DNS y contenedores.</p></article>",
+      "css": ".ds-project{max-width:640px;padding:30px 0;color:#171721;background:#f6f7fb;border-top:2px solid #171721;border-bottom:2px solid #171721;transition:background-color .22s,transform .28s cubic-bezier(.16,1,.3,1)}.ds-project:hover{background:#ffd84d;transform:translateX(12px)}.ds-project small{font:600 .68rem 'Azeret Mono',monospace}.ds-project h3{margin:14px 0 10px;font:800 2rem/1 'Anybody',sans-serif}.ds-project p{margin:0;font:400 1rem/1.6 'Inclusive Sans',sans-serif}"
+    },
+    {
+      "name": "Contact Path",
+      "kind": "custom",
+      "refersTo": "contact-path",
+      "description": "Ruta de conversión para empleo o proyecto.",
+      "html": "<a class=\"ds-contact\" href=\"#\"><span>Quiero conversar sobre</span><strong>Una oportunidad laboral</strong><b aria-hidden=\"true\">→</b></a>",
+      "css": ".ds-contact{display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:center;min-height:150px;padding:32px;color:#171721;background:#f6f7fb;border:2px solid #171721;border-radius:14px;text-decoration:none;transition:transform .26s cubic-bezier(.16,1,.3,1),background-color .18s}.ds-contact:hover{background:#ffd84d;transform:translateY(-7px) rotate(-1deg)}.ds-contact span{grid-column:1/-1;font:600 .7rem 'Azeret Mono',monospace}.ds-contact strong{font:800 2rem/1 'Anybody',sans-serif}.ds-contact:focus-visible{outline:3px solid #ffd84d;outline-offset:4px}"
+    },
+    {
+      "name": "Skill Burst Bubble",
+      "kind": "custom",
+      "description": "Tecnología táctil que flota y explota en seis chispas.",
+      "html": "<button class=\"ds-skill-pop\" type=\"button\">VPS Linux</button>",
+      "css": ".ds-skill-pop{display:grid;place-items:center;width:112px;aspect-ratio:1;padding:12px;color:#171721;background:#ffd84d;border:2px solid #171721;border-radius:52% 48% 45% 55%/55% 43% 57% 45%;font:800 .9rem/1.05 'Anybody',sans-serif;text-align:center;transition:transform .26s cubic-bezier(.16,1,.3,1),border-radius .26s cubic-bezier(.16,1,.3,1)}.ds-skill-pop:hover{border-radius:44% 56% 58% 42%/49% 55% 45% 51%;transform:scale(1.07) rotate(-3deg)}.ds-skill-pop:focus-visible{outline:3px solid #ffd84d;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Taller Cinético",
+    "overview": "La interfaz se comporta como un taller en movimiento: piezas claras, herramientas visibles y una ruta que une construcción, verificación y despliegue. La energía de Upvent y la presencia personal de Trevor Noah se traducen en una composición propia, más técnica y práctica, donde el retrato es el centro humano de un sistema de capacidades. El color es comprometido y el movimiento tiene una función narrativa. Las superficies alrededor del gesto principal permanecen planas y legibles para que los proyectos y las credenciales no compitan con la identidad.",
+    "keyCharacteristics": [
+      "Color sólido y decidido, sin gradientes decorativos.",
+      "Tipografía de ancho expresivo para titulares y una sans inclusiva para lectura.",
+      "Composiciones asimétricas que regresan a una sola columna en móvil.",
+      "Una órbita y una constelación de burbujas explosivas como gesto distintivo; el resto del movimiento guía y responde.",
+      "Evidencia profesional presentada como rutas y registros, no como tarjetas repetidas."
+    ],
+    "rules": [
+      { "name": "The Solid Signal Rule", "body": "Cada bloque usa un color sólido dominante. Los gradientes decorativos y el texto degradado están prohibidos.", "section": "colors" },
+      { "name": "The Width Has Meaning Rule", "body": "El display puede condensarse visualmente para expresar movimiento; el cuerpo nunca se comprime ni se escribe en mayúsculas sostenidas.", "section": "typography" },
+      { "name": "The Flat Workshop Rule", "body": "Si un bloque necesita una sombra amplia para diferenciarse, la jerarquía de color o espacio está mal resuelta.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do mantener contraste WCAG 2.2 AA y un foco amarillo de 3px.",
+      "Do usar ultramarino, coral, menta y amarillo como superficies sólidas con propósito.",
+      "Do limitar los radios de superficies a 14px y reservar la píldora para acciones o filtros.",
+      "Do diseñar primero una lectura clara a 320px antes de añadir movimiento.",
+      "Do tratar la experiencia, los proyectos y las notas como evidencia verificable."
+    ],
+    "donts": [
+      "Don't reconstruir el dashboard cyber genérico ni usar neón decorativo.",
+      "Don't volver a introducir un carrusel horizontal previsible para enumerar tecnologías.",
+      "Don't añadir partículas sin propósito, glassmorphism o cuadrículas interminables de tarjetas.",
+      "Don't convertir la página en una plantilla corporativa o un CV tradicional.",
+      "Don't copiar las composiciones de Upvent o Trevor Noah; solo su energía y compromiso visual son referencias.",
+      "Don't usar texto degradado, franjas laterales de color o grandes sombras suaves.",
+      "Don't ocultar contenido detrás de animaciones ni romper la alternativa de movimiento reducido."
+    ]
+  }
+}
