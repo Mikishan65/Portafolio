@@ -164,6 +164,8 @@ El retrato circular conecta cuatro áreas - desarrollo, QA, DevOps y redes - med
 
 Las tecnologías del hero viven en burbujas de tamaño y ritmo distintos. Cada burbuja responde al toque con un colapso breve y seis chispas antes de recomponerse; en móvil se ordenan como una matriz táctil y con movimiento reducido permanecen estáticas.
 
+En pantallas táctiles, cada burbuja usa un borde de 3px y una segunda silueta de tinta desplazada para conservar volumen y contraste bajo distintas condiciones de brillo. Un trazo orbital y una figura coral equilibran el espacio libre sin competir con las etiquetas.
+
 ### Project Case
 
 Fila amplia con índice de catálogo, título, explicación y etiquetas. En hover cambia de superficie y desplaza el contenido con transform; en móvil se compacta sin ocultar información esencial.
