@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title>Miguel Angel Coronado</title>
-  <rect width="64" height="64" rx="12" fill="#5B4FE9" />
+  <rect width="64" height="64" rx="12" fill="#22251f" />
   <path
-    fill="#F6F7FB"
+    fill="#f3f3ec"
     d="M9 48V16h8l9 14 9-14h8v32h-8V29L26 43 17 29v19H9Z"
   />
-  <path fill="#FFD84D" d="M45 50 53 14h7l-8 36h-7Z" />
+  <path fill="#d6f568" d="M45 50 53 14h7l-8 36h-7Z" />
 </svg>

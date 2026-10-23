@@ -1,4 +1,3 @@
-import { createAboutSection } from "./components/about.js";
 import { createCertificationsSection } from "./components/certifications.js";
 import { createContactSection } from "./components/contact.js";
 import { createEducationSection } from "./components/education.js";
@@ -8,7 +7,7 @@ import { createHero } from "./components/hero.js";
 import { createHighlightsSection } from "./components/highlights.js";
 import { createNavbar } from "./components/navbar.js";
 import { createProjectsSection } from "./components/projects.js";
-import { createTechnologiesSection } from "./components/technologies.js";
+import { createManifesto, createPlayground, createMotionAbout } from "./components/motionSections.js";
 
 export function renderApp(rootElement) {
   if (!rootElement) return;
@@ -16,16 +15,19 @@ export function renderApp(rootElement) {
   rootElement.innerHTML = `
     ${createNavbar()}
     ${createHero()}
+
     <main id="main-content">
+      ${createManifesto()}
       ${createProjectsSection()}
       ${createExperienceSection()}
-      ${createAboutSection()}
-      ${createTechnologiesSection()}
+      ${createMotionAbout()}
+      ${createPlayground()}
       ${createCertificationsSection()}
       ${createEducationSection()}
-      ${createHighlightsSection()}
+      <details class="more-profile"><summary>Más sobre mi forma de trabajar <span>+</span></summary>${createHighlightsSection()}</details>
       ${createContactSection()}
     </main>
+
     ${createFooter()}
   `;
 }

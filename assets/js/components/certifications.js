@@ -1,48 +1,90 @@
-import { certificationsList } from "../data/portfolioData.js";
+import { certificationsList, siteMeta } from "../data/portfolioData.js";
 
 function getCategory(category) {
   const value = category.toLowerCase();
   if (/redes|soporte|cisco|infraestructura/.test(value)) return "network";
   if (/programación|frontend|python|web/.test(value)) return "development";
   if (/calidad|qa/.test(value)) return "quality";
-  return "learning";
+  return "academic";
 }
 
-function renderCertificate(certificate, index) {
+function renderCertCard(cert, index) {
+  const catKey = getCategory(cert.category);
+
   return `
-    <article class="evidence-row reveal" data-category="${getCategory(certificate.category)}">
-      <span class="evidence-index">${String(index + 1).padStart(2, "0")}</span>
-      <div class="evidence-title">
-        <i class="${certificate.icon}" aria-hidden="true"></i>
-        <div><h3>${certificate.title}</h3><p>${certificate.issuer}</p></div>
+    <article class="cert-card reveal" data-category="${catKey}" data-spotlight>
+      <div class="cert-card-top">
+        <div class="cert-icon-wrapper" style="--cert-tint: ${cert.badgeColor || '#5B4FE9'};">
+          <i class="${cert.icon}" aria-hidden="true"></i>
+        </div>
+        <div class="cert-badge-pill">
+          <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+          <span>${cert.category}</span>
+        </div>
       </div>
-      <p class="evidence-description">${certificate.description}</p>
-      <time>${certificate.date}</time>
+
+      <div class="cert-body">
+        <h3 class="cert-title">${cert.title}</h3>
+        <p class="cert-issuer"><i class="fa-solid fa-award" aria-hidden="true"></i> ${cert.issuer}</p>
+        <p class="cert-description">${cert.description}</p>
+      </div>
+
+      <div class="cert-footer">
+        <span class="cert-date"><i class="fa-regular fa-calendar" aria-hidden="true"></i> ${cert.date}</span>
+        <span class="cert-verified-tag"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Verificado</span>
+      </div>
     </article>
   `;
 }
 
 export function createCertificationsSection() {
   return `
-    <section id="certifications" class="section evidence-section">
+    <section id="certifications" class="section cert-section">
       <div class="section-shell">
-        <div class="evidence-head reveal">
-          <div>
-            <p class="section-label">Evidencia verificable</p>
-            <h2>Aprendizaje convertido en práctica.</h2>
+        <div class="section-header reveal">
+          <div class="section-header-badge">
+            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+            <span>EVIDENCIA Y CERTIFICACIONES</span>
           </div>
-          <p>Certificaciones y formación que respaldan el trabajo en programación, redes, infraestructura y control de calidad.</p>
+          <h2 class="section-title">
+            Conocimiento respaldado con acreditaciones oficiales.
+          </h2>
+          <p class="section-subtitle">
+            Certificaciones en programación, redes Cisco, infraestructura y aseguramiento de calidad verificables en el CV 2026.
+          </p>
         </div>
 
-        <div class="filter-bar filter-bar-light reveal" role="group" aria-label="Filtrar certificaciones">
-          <button class="filter-button is-active" type="button" data-cert-filter="all" aria-pressed="true">Todas</button>
-          <button class="filter-button" type="button" data-cert-filter="development" aria-pressed="false">Desarrollo</button>
-          <button class="filter-button" type="button" data-cert-filter="network" aria-pressed="false">Redes</button>
-          <button class="filter-button" type="button" data-cert-filter="quality" aria-pressed="false">QA</button>
-          <button class="filter-button" type="button" data-cert-filter="learning" aria-pressed="false">Otras</button>
+        <div class="filter-toolbar reveal" role="group" aria-label="Filtrar certificaciones">
+          <button class="filter-btn is-active" type="button" data-cert-filter="all" aria-pressed="true">
+            <span>Todas</span>
+            <small>(${certificationsList.length})</small>
+          </button>
+          <button class="filter-btn" type="button" data-cert-filter="development" aria-pressed="false">
+            <span>Desarrollo</span>
+          </button>
+          <button class="filter-btn" type="button" data-cert-filter="network" aria-pressed="false">
+            <span>Redes Cisco</span>
+          </button>
+          <button class="filter-btn" type="button" data-cert-filter="quality" aria-pressed="false">
+            <span>QA Testing</span>
+          </button>
+          <button class="filter-btn" type="button" data-cert-filter="academic" aria-pressed="false">
+            <span>Académico</span>
+          </button>
         </div>
 
-        <div class="evidence-list">${certificationsList.map(renderCertificate).join("")}</div>
+        <div class="cert-grid">
+          ${certificationsList.map(renderCertCard).join("")}
+        </div>
+
+        <div class="cert-cta-strip reveal">
+          <p>¿Deseas verificar los certificados oficiales en alta resolución?</p>
+          <a class="btn-primary" href="${siteMeta.cvUrl}" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+            <span>Descargar CV con Certificados</span>
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </section>
   `;

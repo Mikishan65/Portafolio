@@ -18,7 +18,9 @@ export const siteMeta = {
   githubUser: "Mikishan65",
   linkedin: "https://www.linkedin.com/in/miguel-chavarria-2ba25429b/",
   portfolioUrl: "https://mikishan65.github.io/Portafolio/",
-  avatar: "assets/profile-miguel.png"
+  avatar: "assets/profile-miguel.png",
+  cvUrl: "Doc/Miguel%20Angel%20Chavarria%20Coronado%20CV%202026.pdf",
+  cvFileName: "Miguel Angel Chavarria Coronado CV 2026.pdf"
 };
 
 export const navItems = [
@@ -80,18 +82,19 @@ export const profilePillars = [
 
 export const experienceEntries = [
   {
-    role: "Desarrollador de Software / DevOps",
-    company: "Freelance & Proyectos para Clientes",
+    role: "Desarrollador de Software / DevOps Freelance",
+    company: "Proyectos en Producción (ccepcoin.tech)",
     badge: "Producción & Cloud",
-    period: "Junio 2026 – Agosto 2026",
+    period: "Marzo 2026 – Agosto 2026",
     location: "Santa Cruz, Bolivia",
+    liveUrl: "https://ccepcoin.tech/",
     tasks: [
-      "Despliegue y puesta en marcha de aplicaciones web en servidores VPS y entornos de producción de alta disponibilidad.",
-      "Configuración, gestión y resolución de dominios, subdominios y registros DNS para clientes.",
-      "Gestión de infraestructura y despliegue de aplicaciones mediante Dokploy, Git/GitHub y entornos Linux.",
-      "Participación integral desde la arquitectura inicial hasta el soporte técnico continuo y mantenimiento en vivo."
+      "Despliegue y puesta en marcha de aplicaciones web en servidores VPS y entornos de producción de alta disponibilidad (ccepcoin.tech).",
+      "Configuración completa de dominios, subdominios, registros DNS y certificados SSL/HTTPS con Let's Encrypt.",
+      "Gestión integral de infraestructura y despliegue continuo mediante Dokploy, Docker, Git/GitHub y entornos Linux.",
+      "Participación activa desde la arquitectura e infraestructura inicial hasta el mantenimiento, versionado y soporte en producción."
     ],
-    tags: ["VPS Linux", "Dokploy", "DNS / Dominios", "Git / GitHub", "DevOps", "Producción"]
+    tags: ["VPS Linux", "Dokploy", "Docker", "DNS / SSL", "Git / GitHub", "ccepcoin.tech", "Producción"]
   },
   {
     role: "Pasante de Desarrollo",
@@ -376,40 +379,53 @@ export const technologies = [
 
 export const projects = [
   {
-    icon: "fa-solid fa-server",
-    title: "Infraestructura VPS & Despliegue con Dokploy",
-    description: "Configuración integral de servidores VPS Linux para clientes, administración de zonas DNS, subdominios y despliegue automatizado con Dokploy y Docker.",
-    tags: ["VPS Linux", "Dokploy", "Docker", "DNS / SSL", "Producción"]
+    icon: "fa-solid fa-cloud-arrow-up",
+    title: "CCEP Coin: Infraestructura VPS, Dokploy & Producción",
+    description: "Despliegue a producción de plataforma web en servidor VPS Linux (ccepcoin.tech). Configuración de zonas DNS, subdominios, certificados SSL/HTTPS, integración continua con Git/GitHub y administración mediante Dokploy y Docker.",
+    tags: ["VPS Linux", "Dokploy", "Docker", "DNS / SSL", "ccepcoin.tech", "Producción"],
+    liveUrl: "https://ccepcoin.tech/",
+    isLive: true,
+    statusLabel: "En Producción"
   },
   {
     icon: "fa-solid fa-folder-tree",
-    title: "Plataforma Web MVC & Flujo Documental",
-    description: "Sistema web modular desarrollado bajo arquitectura MVC con panel administrativo, control de acceso por roles y seguimiento de flujo documental hospitalario.",
-    tags: ["PHP", "MVC", "MySQL", "Seguridad", "API REST"]
+    title: "Plataforma Web MVC & Flujo Documental Hospitalario",
+    description: "Sistema web modular desarrollado bajo arquitectura MVC con panel administrativo, control de acceso por roles y trazabilidad de flujo documental para el sector salud.",
+    tags: ["PHP", "MVC", "MySQL", "Seguridad", "API REST", "Testing"],
+    isLive: false,
+    statusLabel: "Hospital Oncológico"
   },
   {
     icon: "fa-solid fa-paw",
     title: "App Match para Mascotas (Mobile)",
-    description: "Aplicación móvil desarrollada en React Native y Firebase que conecta dueños de mascotas mediante perfiles interactivos, chat y geolocalización.",
-    tags: ["React Native", "Firebase", "Mobile App", "UI / UX"]
+    description: "Aplicación móvil desarrollada en React Native y Firebase que conecta dueños de mascotas mediante perfiles interactivos, chat en tiempo real y geolocalización.",
+    tags: ["React Native", "Firebase", "Mobile App", "UI / UX", "Mobile"],
+    isLive: false,
+    statusLabel: "Mobile App"
   },
   {
     icon: "fa-solid fa-utensils",
     title: "Restaurante By Dosier",
-    description: "Sistema web para reservas de mesas, gestión de pedidos y control de inventario en tiempo real para servicio gastronómico.",
-    tags: ["Web App", "JavaScript", "MySQL", "Bootstrap"]
+    description: "Sistema web para reservas de mesas, gestión de pedidos y control de inventario en tiempo real para servicio gastronómico con interface reactiva.",
+    tags: ["Web App", "JavaScript ES6+", "MySQL", "Bootstrap", "Frontend"],
+    isLive: false,
+    statusLabel: "Web App"
   },
   {
     icon: "fa-solid fa-database",
     title: "Arquitectura & Optimización de Bases de Datos",
-    description: "Diseño y administración de bases de datos relacionales en PostgreSQL y MySQL con procedimientos almacenados, vistas indexadas y consultas analíticas.",
-    tags: ["PostgreSQL", "MySQL", "BI", "Stored Procedures"]
+    description: "Diseño y administración de bases de datos relacionales en PostgreSQL y MySQL con procedimientos almacenados, vistas indexadas, triggers y consultas analíticas.",
+    tags: ["PostgreSQL", "MySQL", "BI", "Stored Procedures", "Optimización"],
+    isLive: false,
+    statusLabel: "Database"
   },
   {
     icon: "fa-solid fa-boxes-stacked",
     title: "Sistema de Inventario & Reportes en C#",
-    description: "Software de escritorio WinForms (.NET) conectado a SQL Server con generación automática de reportes estadísticos y control de stock.",
-    tags: ["C#", ".NET", "SQL Server", "WinForms"]
+    description: "Software de escritorio WinForms (.NET) conectado a SQL Server con generación automática de reportes estadísticos, gestión de almacén y control de stock.",
+    tags: ["C#", ".NET", "SQL Server", "WinForms", "Desktop"],
+    isLive: false,
+    statusLabel: "Desktop"
   }
 ];
 

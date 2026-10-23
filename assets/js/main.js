@@ -1,19 +1,35 @@
 import { renderApp } from "./app.js";
+import { initCinematicMotion } from "./modules/cinematicMotion.js";
+import { initPlayground } from "./modules/playground.js";
+import { projectDetail } from "./components/projects.js";
 
+import { sound } from "./modules/audioFx.js";
+
+// Initialize application DOM
 document.documentElement.classList.add("js");
-renderApp(document.getElementById("app"));
+const appRoot = document.getElementById("app");
+renderApp(appRoot);
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Initialize interactive layers
 setCurrentYear();
+initAudioControls();
+initLiveClock();
 initNavigation();
 initScrollProgress();
 initSectionSpy();
 initReveals();
 initFilters();
-initTilt();
-initSkillPops();
-initTraitRotator();
+
+
+
+
+initInteractiveSounds();
+initEmailCopy();
+initCinematicMotion();
+initPlayground();
+initProjectDialog();
 
 requestAnimationFrame(() => document.body.classList.add("is-ready"));
 
@@ -21,6 +37,52 @@ function setCurrentYear() {
   document.querySelectorAll("[data-current-year]").forEach((node) => {
     node.textContent = String(new Date().getFullYear());
   });
+}
+
+function initAudioControls() {
+  const soundBtn = document.getElementById("sound-toggle");
+  const soundIcon = document.getElementById("sound-icon");
+  const soundLabel = document.getElementById("sound-label");
+
+  if (!soundBtn) return;
+
+  soundBtn.addEventListener("click", () => {
+    const isEnabled = sound.toggle();
+    soundBtn.classList.toggle("is-muted", !isEnabled);
+    soundBtn.setAttribute("aria-pressed", String(isEnabled));
+    if (soundIcon) {
+      soundIcon.className = isEnabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
+    }
+    if (soundLabel) {
+      soundLabel.textContent = isEnabled ? "SFX: ON" : "SFX: OFF";
+    }
+  });
+}
+
+function initLiveClock() {
+  const clock = document.getElementById("local-clock");
+  if (!clock) return;
+
+  function updateTime() {
+    try {
+      const now = new Date();
+      // Santa Cruz, Bolivia is UTC-4
+      const options = {
+        timeZone: "America/La_Paz",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      };
+      clock.textContent = new Intl.DateTimeFormat("es-BO", options).format(now);
+    } catch {
+      const d = new Date();
+      clock.textContent = d.toTimeString().split(" ")[0];
+    }
+  }
+
+  updateTime();
+  setInterval(updateTime, 1000);
 }
 
 function initNavigation() {
@@ -33,27 +95,29 @@ function initNavigation() {
     nav.classList.toggle("is-open", open);
     document.body.classList.toggle("menu-open", open);
     toggle.setAttribute("aria-expanded", String(open));
-    const label = toggle.querySelector(".nav-toggle-label");
-    if (label) label.textContent = open ? "Cerrar" : "Menú";
+    sound.playClick();
   };
 
   toggle.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
-  panel.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  panel.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      setOpen(false);
+      sound.playClick();
+    })
+  );
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setOpen(false);
+    if (event.key === "Escape" && nav.classList.contains("is-open")) setOpen(false);
   });
 
-  let lastScroll = window.scrollY;
-  const updateNav = () => {
-    const current = window.scrollY;
-    nav.classList.toggle("is-scrolled", current > 18);
-    if (!nav.classList.contains("is-open") && !prefersReducedMotion) {
-      nav.classList.toggle("is-hidden", current > 160 && current > lastScroll + 8);
-      if (current < lastScroll - 8 || current < 80) nav.classList.remove("is-hidden");
-    }
-    lastScroll = current;
-  };
-  window.addEventListener("scroll", updateNav, { passive: true });
+  window.addEventListener("scroll", () => {
+    nav.classList.toggle("is-scrolled", window.scrollY > 20);
+  }, { passive: true });
+  document.addEventListener("click", event => {
+    if (nav.classList.contains("is-open") && !nav.contains(event.target)) setOpen(false);
+  });
+  window.matchMedia("(min-width: 1101px)").addEventListener("change", () => setOpen(false));
+
 }
 
 function initScrollProgress() {
@@ -71,7 +135,10 @@ function initScrollProgress() {
 function initSectionSpy() {
   const links = [...document.querySelectorAll(".nav-link")];
   const sections = links
-    .map((link) => document.querySelector(link.getAttribute("href")))
+    .map((link) => {
+      const href = link.getAttribute("href");
+      return href && href.startsWith("#") ? document.querySelector(href) : null;
+    })
     .filter(Boolean);
   if (!links.length || !sections.length || !("IntersectionObserver" in window)) return;
 
@@ -88,7 +155,7 @@ function initSectionSpy() {
         else link.removeAttribute("aria-current");
       });
     },
-    { rootMargin: "-35% 0px -45%", threshold: [0.05, 0.25, 0.55] }
+    { rootMargin: "-30% 0px -40%", threshold: [0.08, 0.3, 0.6] }
   );
   sections.forEach((section) => observer.observe(section));
 }
@@ -108,21 +175,25 @@ function initReveals() {
         currentObserver.unobserve(entry.target);
       });
     },
-    { rootMargin: "0px 0px -8%", threshold: 0.08 }
+    { rootMargin: "0px 0px -6%", threshold: 0.05 }
   );
   elements.forEach((element) => observer.observe(element));
 }
 
 function initFilters() {
-  setupFilter("[data-project-filter]", ".project-case", "projectFilter");
-  setupFilter("[data-cert-filter]", ".evidence-row", "certFilter");
+  setupFilter("[data-project-filter]", ".project-card", "projectFilter");
+  setupFilter("[data-cert-filter]", ".cert-card", "certFilter");
+  setupFilter("[data-tech-filter]", ".tech-item-card", "techFilter");
 }
 
 function setupFilter(buttonSelector, itemSelector, datasetKey) {
   const buttons = [...document.querySelectorAll(buttonSelector)];
   const items = [...document.querySelectorAll(itemSelector)];
+  if (!buttons.length || !items.length) return;
+
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
+      sound.playClick();
       const value = button.dataset[datasetKey];
       buttons.forEach((candidate) => {
         const active = candidate === button;
@@ -131,65 +202,61 @@ function setupFilter(buttonSelector, itemSelector, datasetKey) {
       });
       items.forEach((item) => {
         const visible = value === "all" || item.dataset.category === value;
-        item.hidden = !visible;
+        item.style.display = visible ? "" : "none";
+        if (datasetKey === 'projectFilter') item.previousElementSibling.hidden = !visible;
+        if (visible) item.classList.add("is-visible");
       });
-    });
-  });
-}
-
-function initTilt() {
-  if (prefersReducedMotion || !window.matchMedia("(pointer: fine)").matches) return;
-  document.querySelectorAll("[data-tilt]").forEach((element) => {
-    element.addEventListener("pointermove", (event) => {
-      const rect = element.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      element.style.setProperty("--tilt-x", `${x * 10}deg`);
-      element.style.setProperty("--tilt-y", `${y * -8}deg`);
-    });
-    element.addEventListener("pointerleave", () => {
-      element.style.setProperty("--tilt-x", "0deg");
-      element.style.setProperty("--tilt-y", "0deg");
-    });
-  });
-}
-
-function initTraitRotator() {
-  if (prefersReducedMotion) return;
-  const target = document.querySelector("[data-rotating-trait]");
-  const traits = [...document.querySelectorAll("[data-trait]")].map((item) => item.dataset.trait);
-  if (!target || traits.length < 2) return;
-
-  let index = 0;
-  window.setInterval(() => {
-    index = (index + 1) % traits.length;
-    target.classList.add("is-changing");
-    window.setTimeout(() => {
-      target.textContent = traits[index];
-      target.classList.remove("is-changing");
-    }, 180);
-  }, 2200);
-}
-
-function initSkillPops() {
-  const bubbles = [...document.querySelectorAll("[data-skill-pop]")];
-  const status = document.querySelector("[data-pop-status]");
-  if (!bubbles.length) return;
-
-  const responses = ["desplegado", "verificado", "conectado", "listo para producción"];
-  let responseIndex = 0;
-
-  bubbles.forEach((bubble) => {
-    bubble.addEventListener("click", () => {
-      const skill = bubble.dataset.skillPop;
-      if (status) {
-        status.textContent = `${skill}: ${responses[responseIndex % responses.length]}.`;
-        responseIndex += 1;
+      if (datasetKey === "projectFilter") {
+        document.getElementById("project-results").textContent = `${items.filter(item => item.style.display !== "none").length} proyectos`;
+        document.dispatchEvent(new Event('projectsfiltered'));
       }
-
-      if (prefersReducedMotion || bubble.classList.contains("is-popping")) return;
-      bubble.classList.add("is-popping");
-      window.setTimeout(() => bubble.classList.remove("is-popping"), 720);
+      window.ScrollTrigger?.refresh();
     });
   });
+}
+
+function initInteractiveSounds() {
+  // Add subtle tactile sound feedback on key interactions
+  const clickables = document.querySelectorAll(
+    ".btn-primary, .btn-secondary, .btn-ghost, .project-link-btn, .nav-cv-btn, .nav-contact-btn"
+  );
+  clickables.forEach((el) => {
+    el.addEventListener("click", () => sound.playClick());
+  });
+}
+
+function initEmailCopy() {
+  const copyBtn = document.getElementById("copy-email");
+  const copyText = document.getElementById("copy-text");
+  const copyIcon = document.getElementById("copy-icon");
+  if (!copyBtn) return;
+
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("miguelangelchavarriacoronado@gmail.com");
+      sound.playSuccess();
+      if (copyText) copyText.textContent = "¡Copiado!";
+      if (copyIcon) copyIcon.className = "fa-solid fa-check";
+      copyBtn.classList.add("is-success");
+
+      setTimeout(() => {
+        if (copyText) copyText.textContent = "Copiar";
+        if (copyIcon) copyIcon.className = "fa-regular fa-copy";
+        copyBtn.classList.remove("is-success");
+      }, 2400);
+    } catch {
+      if (copyText) copyText.textContent = "Selecciona el correo";
+    }
+  });
+}
+
+function initProjectDialog() {
+ const dialog=document.getElementById('project-dialog');let trigger;
+ document.querySelectorAll('[data-project-open]').forEach(button=>button.addEventListener('click',()=>{
+  trigger=button;document.getElementById('project-dialog-content').innerHTML=projectDetail(Number(button.dataset.projectOpen));dialog.showModal();dialog.scrollTop=0;document.body.classList.add('modal-open');dialog.querySelector('.dialog-close').focus();
+  dialog.querySelector('[data-close-dialog]')?.addEventListener('click',()=>dialog.close());
+ }));
+ dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
+ dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');trigger?.focus({preventScroll:true});});
 }

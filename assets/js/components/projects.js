@@ -1,56 +1,13 @@
-import { projects } from "../data/portfolioData.js";
-
-function getProjectCategory(project) {
-  const signal = `${project.title} ${project.tags.join(" ")}`.toLowerCase();
-  if (/vps|dokploy|docker|devops|dns/.test(signal)) return "devops";
-  if (/mascotas|mobile|react native/.test(signal)) return "mobile";
-  if (/base de datos|inventario|sql|postgresql|desktop/.test(signal)) return "data";
-  return "web";
-}
-
-function renderProject(project, index) {
-  const category = getProjectCategory(project);
-  const labels = { devops: "Infraestructura", mobile: "Producto móvil", data: "Datos", web: "Producto web" };
-
-  return `
-    <article class="project-case project-case-${(index % 3) + 1} reveal" data-category="${category}">
-      <div class="project-index" aria-hidden="true">${String(index + 1).padStart(2, "0")}</div>
-      <div class="project-main">
-        <div class="project-meta">
-          <span>${labels[category]}</span>
-          <span>Proyecto implementado</span>
-        </div>
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <ul class="project-tags" aria-label="Tecnologías">
-          ${project.tags.map((tag) => `<li>${tag}</li>`).join("")}
-        </ul>
-      </div>
-      <div class="project-glyph" aria-hidden="true"><i class="${project.icon}"></i></div>
-    </article>
-  `;
-}
-
-export function createProjectsSection() {
-  return `
-    <section id="projects" class="section projects-section">
-      <div class="section-shell">
-        <div class="section-intro reveal">
-          <p class="section-label">Trabajo seleccionado</p>
-          <h2>Soluciones que cruzan la línea de llegada.</h2>
-          <p>De la arquitectura y los datos al despliegue real. Cada pieza muestra una parte distinta del recorrido.</p>
-        </div>
-
-        <div class="filter-bar reveal" role="group" aria-label="Filtrar proyectos">
-          <button class="filter-button is-active" type="button" data-project-filter="all" aria-pressed="true">Todos</button>
-          <button class="filter-button" type="button" data-project-filter="devops" aria-pressed="false">Infraestructura</button>
-          <button class="filter-button" type="button" data-project-filter="web" aria-pressed="false">Web</button>
-          <button class="filter-button" type="button" data-project-filter="mobile" aria-pressed="false">Móvil</button>
-          <button class="filter-button" type="button" data-project-filter="data" aria-pressed="false">Datos</button>
-        </div>
-
-        <div class="project-list">${projects.map(renderProject).join("")}</div>
-      </div>
-    </section>
-  `;
-}
+import { projects } from '../data/portfolioData.js';
+const names=['CCEP<br>COIN.','FLUJO<br>VITAL.','BUEN<br>MATCH.','BY<br>DOSIER.','DATOS<br>CON ORDEN.','STOCK<br>EN FOCO.'];
+const categories=['devops','web','mobile','web','data','data'];
+const arts=[
+ '<div class="orbit-system"><span class="orbit-path path-a"></span><span class="orbit-path path-b"></span><span class="orbit-path path-c"></span><b>↗</b><small>BUILD. SHIP. REPEAT.</small></div>',
+ '<div class="paper-system"><span><i>DOCUMENTO</i><b>↗</b></span><span><i>REVISIÓN</i><b>✓</b></span><span><i>ARCHIVO</i><b>↳</b></span></div>',
+ '<div class="match-system"><span class="match-eye eye-left"></span><span class="match-eye eye-right"></span><b>♡</b><i>UN MATCH CON PATAS.</i></div>',
+ '<div class="plate-system"><div><span>by</span><strong>Dosier</strong><small>A LA MESA.</small></div></div>',
+ '<div class="query-system"><span>{</span><b>*</b><span>}</span><small>LA LÓGICA DETRÁS DE TODO.</small></div>',
+ '<div class="bars-system"><i></i><i></i><i></i><i></i><i></i><span>CADA PIEZA CUENTA.</span></div>'
+];
+export function createProjectsSection(){return `<section id="projects" class="motion-projects"><div class="work-heading"><span class="eyebrow">DEL CONCEPTO A LA PRÁCTICA</span><h2>Trabajo<br><em>en movimiento.</em></h2><p>Seis formas de conectar ideas, tecnología y personas.</p></div><div class="filter-toolbar" role="group" aria-label="Filtrar proyectos">${[['all','Todo'],['devops','DevOps'],['web','Web'],['mobile','Móvil'],['data','Datos']].map(([id,label])=>`<button type="button" class="filter-btn ${id==='all'?'is-active':''}" data-project-filter="${id}" aria-pressed="${id==='all'}">${label}</button>`).join('')}<span id="project-results" aria-live="polite">6 proyectos</span></div><div class="project-deck">${projects.map((p,i)=>`<div class="project-marker" data-marker="${i}"></div><article class="project-card project-panel project-${i}" data-category="${categories[i]}" style="--panel-order:${i}"><div class="project-panel-top"><span>${p.statusLabel}</span><span>${p.tags.slice(0,3).join(' / ')}</span><span>↗</span></div><div class="project-panel-layout"><div class="project-panel-copy"><h3>${names[i]}</h3><p>${p.description}</p><button type="button" class="project-details-button magnetic" data-project-open="${i}">Explorar proyecto <span>↗</span></button></div><div class="project-artwork" aria-hidden="true">${arts[i]}</div></div><div class="project-panel-bottom"><span>${p.title}</span><span>INGENIERÍA APLICADA</span></div></article>`).join('')}</div></section><dialog id="project-dialog" aria-labelledby="project-dialog-title"><button type="button" class="dialog-close">Cerrar ×</button><div id="project-dialog-content"></div></dialog>`;}
+export function projectDetail(index){const p=projects[index];return `<span class="eyebrow">${p.statusLabel}</span><h2 id="project-dialog-title">${p.title}</h2><p>${p.description}</p><div class="detail-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>${p.liveUrl?`<a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="underlink">Visitar proyecto ↗</a>`:'<p>Este proyecto no tiene una demo pública enlazada.</p><a class="underlink" href="#contact" data-close-dialog>Conversemos sobre el proyecto ↗</a>'}`;}

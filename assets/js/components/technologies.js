@@ -1,41 +1,67 @@
 import { technologies } from "../data/portfolioData.js";
 
 const categoryLabels = {
-  frontend: "Experiencias",
-  backend: "Lógica y APIs",
-  devops: "Producción",
-  qa: "Calidad",
-  database: "Datos",
-  tools: "Flujo de trabajo"
+  frontend: "Frontend & Mobile",
+  backend: "Backend & APIs",
+  devops: "Cloud & DevOps",
+  qa: "QA & Testing",
+  database: "Bases de Datos",
+  tools: "Herramientas"
 };
 
-function renderTechnology(technology, index) {
+function renderTechCard(tech, index) {
   return `
-    <li class="tech-word tech-word-${(index % 5) + 1} reveal" tabindex="0">
-      <i class="${technology.icon}" aria-hidden="true"></i>
-      <span>${technology.name}</span>
-      <small>${technology.detail}</small>
-    </li>
+    <article class="tech-item-card reveal" data-category="${tech.category}" data-spotlight tabindex="0">
+      <div class="tech-card-inner">
+        <div class="tech-icon-wrapper" style="--brand-color: ${tech.color || '#5B4FE9'};">
+          <i class="${tech.icon}" aria-hidden="true"></i>
+        </div>
+        <div class="tech-details">
+          <span class="tech-category-tag">${categoryLabels[tech.category] || tech.category}</span>
+          <h3 class="tech-name">${tech.name}</h3>
+          <p class="tech-desc">${tech.detail}</p>
+        </div>
+      </div>
+    </article>
   `;
 }
 
 export function createTechnologiesSection() {
-  const categories = [...new Set(technologies.map((technology) => technology.category))];
+  const categories = Object.keys(categoryLabels);
 
   return `
-    <section id="technologies" class="section technology-section">
-      <div class="section-shell technology-layout">
-        <div class="technology-intro reveal">
-          <p class="section-label">Caja de herramientas</p>
-          <h2>La tecnología cambia. La capacidad de aprender, no.</h2>
-          <p>Trabajo con un stack amplio porque cada problema pide una combinación distinta. Toca o enfoca cada herramienta para ver dónde la aplico.</p>
-          <div class="category-key">
-            ${categories.map((category) => `<span>${categoryLabels[category] || category}</span>`).join("")}
+    <section id="technologies" class="section tech-section">
+      <div class="section-shell">
+        <div class="section-header reveal">
+          <div class="section-header-badge">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            <span>STACK TECNOLÓGICO</span>
           </div>
+          <h2 class="section-title">
+            Herramientas para construir y estabilizar.
+          </h2>
+          <p class="section-subtitle">
+            Un conjunto de tecnologías seleccionadas para cubrir desde la interfaz de usuario hasta la infraestructura y monitoreo en servidores Linux.
+          </p>
         </div>
-        <ul class="tech-cloud" aria-label="Tecnologías y herramientas">
-          ${technologies.map(renderTechnology).join("")}
-        </ul>
+
+        <div class="tech-filter-bar reveal" role="group" aria-label="Filtrar por área tecnológica">
+          <button class="tech-filter-btn is-active" type="button" data-tech-filter="all" aria-pressed="true">
+            <span>Todos</span>
+          </button>
+          ${categories
+            .map(
+              (cat) => `
+            <button class="tech-filter-btn" type="button" data-tech-filter="${cat}" aria-pressed="false">
+              <span>${categoryLabels[cat]}</span>
+            </button>`
+            )
+            .join("")}
+        </div>
+
+        <div class="tech-grid">
+          ${technologies.map(renderTechCard).join("")}
+        </div>
       </div>
     </section>
   `;
