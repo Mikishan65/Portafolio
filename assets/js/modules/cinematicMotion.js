@@ -1,3 +1,5 @@
+import { sound } from './audioFx.js';
+
 export const motionState={paused:matchMedia('(prefers-reduced-motion: reduce)').matches,progress:0};
 
 export function initCinematicMotion() {
@@ -37,7 +39,7 @@ export function initCinematicMotion() {
  function update(){motionState.paused=manualPause||preference.matches;document.body.classList.toggle('motion-paused',motionState.paused);button.textContent=motionState.paused?'Motion ▶':'Pausa Ⅱ';button.setAttribute('aria-pressed',String(motionState.paused));button.setAttribute('aria-label',motionState.paused?'Activar animaciones':'Pausar animaciones');button.disabled=preference.matches;setup();document.dispatchEvent(new Event('motionchange'));}
  document.addEventListener('projectsfiltered', setup);
  document.querySelector('.more-profile')?.addEventListener('toggle',()=>ScrollTrigger?.refresh());
- button.addEventListener('click',()=>{manualPause=!manualPause;update();});preference.addEventListener('change',update);update();
+ button.addEventListener('click',()=>{manualPause=!manualPause;update();sound.playClick();});preference.addEventListener('change',update);update();
  if(gsap&&!motionState.paused){gsap.from('.type-line',{yPercent:110,rotation:6,stagger:.06,duration:.7,ease:'power4.out'});gsap.from('.hero-topline,.hero-bottomline',{opacity:0,y:15,duration:.6,delay:.12});}
  if(gsap&&matchMedia('(pointer:fine)').matches){
   document.querySelectorAll('.magnetic').forEach(el=>{const x=gsap.quickTo(el,'x',{duration:.35,ease:'power3.out'}),y=gsap.quickTo(el,'y',{duration:.35,ease:'power3.out'});el.addEventListener('pointermove',e=>{if(motionState.paused)return;const r=el.getBoundingClientRect();x((e.clientX-r.left-r.width/2)*.18);y((e.clientY-r.top-r.height/2)*.18);});el.addEventListener('pointerleave',()=>{x(0);y(0);});});

@@ -14,7 +14,7 @@ export function createFooter() {
           </div>
           <div class="footer-telemetry">
             <span class="telemetry-ping"><span class="ping-dot"></span> Santa Cruz, Bolivia (UTC-4)</span>
-            <span class="telemetry-time" id="local-clock" aria-label="Hora local en Santa Cruz">--:--:--</span>
+            <span class="telemetry-time" id="local-clock-footer" data-live-clock aria-label="Hora local en Santa Cruz">--:--:--</span>
           </div>
         </div>
         <div class="footer-divider" aria-hidden="true"></div>

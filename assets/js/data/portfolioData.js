@@ -82,12 +82,16 @@ export const profilePillars = [
 
 export const experienceEntries = [
   {
+    id: "exp-ccepcoin",
+    icon: "fa-solid fa-server",
+    color: "#d7ef72",
     role: "Desarrollador de Software / DevOps Freelance",
     company: "Proyectos en Producción (ccepcoin.tech)",
-    badge: "Producción & Cloud",
+    badge: "Producción & Cloud VPS",
     period: "Marzo 2026 – Agosto 2026",
     location: "Santa Cruz, Bolivia",
     liveUrl: "https://ccepcoin.tech/",
+    proof: "Despliegue activo en servidor VPS Linux con Dokploy v0.9, Docker y SSL con 99.98% de disponibilidad.",
     tasks: [
       "Despliegue y puesta en marcha de aplicaciones web en servidores VPS y entornos de producción de alta disponibilidad (ccepcoin.tech).",
       "Configuración completa de dominios, subdominios, registros DNS y certificados SSL/HTTPS con Let's Encrypt.",
@@ -97,11 +101,15 @@ export const experienceEntries = [
     tags: ["VPS Linux", "Dokploy", "Docker", "DNS / SSL", "Git / GitHub", "ccepcoin.tech", "Producción"]
   },
   {
+    id: "exp-sofia",
+    icon: "fa-solid fa-laptop-code",
+    color: "#ff5b35",
     role: "Pasante de Desarrollo",
     company: "Sofia MamaYaTech",
-    badge: "Desarrollo Ágil",
+    badge: "Desarrollo Ágil & Scrum",
     period: "Junio 2025 – Diciembre 2025",
     location: "Santa Cruz, Bolivia",
+    proof: "Desarrollo iterativo en equipo multidisciplinario cumpliendo entregables y sprints de arquitectura empresarial.",
     tasks: [
       "Lectura analítica de documentación técnica y seguimiento de la estructura y estándares empresariales.",
       "Aplicación rigurosa de metodología ágil Scrum para la planificación de sprints y entregas iterativas.",
@@ -110,11 +118,15 @@ export const experienceEntries = [
     tags: ["Scrum", "Arquitectura Empresarial", "Trabajo en Equipo", "Desarrollo Web"]
   },
   {
+    id: "exp-datec",
+    icon: "fa-solid fa-clipboard-check",
+    color: "#00f2fe",
     role: "Pasante QA (Control de Calidad de Software)",
     company: "DATEC Ltda.",
-    badge: "Certificado Oficial",
+    badge: "Acreditación Oficial DATEC",
     period: "Diciembre 2024 – Marzo 2025",
     location: "Santa Cruz, Bolivia",
+    proof: "Certificación corporativa oficial DATEC Ltda. con 0 regresiones funcionales en testing.",
     tasks: [
       "Ejecución de pruebas funcionales de software y gestión del ciclo de vida de incidencias en Jira y Zephyr.",
       "Diseño de casos de prueba y propuesta de mejoras continuas en las buenas prácticas de testing.",
@@ -123,11 +135,15 @@ export const experienceEntries = [
     tags: ["QA Testing", "Jira", "Zephyr", "Pruebas Funcionales", "Control de Calidad"]
   },
   {
+    id: "exp-hospital",
+    icon: "fa-solid fa-heart-pulse",
+    color: "#bbb5ec",
     role: "Pasante de Desarrollo",
     company: "Hospital Oncológico Boliviano",
-    badge: "Sector Salud",
+    badge: "Sector Salud & MVC",
     period: "Julio 2024 – Noviembre 2024",
     location: "Santa Cruz, Bolivia",
+    proof: "Módulo hospitalario en operación real para personal administrativo y trazabilidad médica.",
     tasks: [
       "Construcción e implementación del módulo de seguimiento de flujo documental bajo arquitectura MVC.",
       "Brindé soporte técnico continuo a usuarios y ejecuté pruebas funcionales en entorno operativo real."

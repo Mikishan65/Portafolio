@@ -1,4 +1,5 @@
 import * as THREE from '../vendor/three.module.min.js';
+import { sound } from './audioFx.js';
 
 // A segmented torus knot: one continuous form that can separate into its parts.
 export function initSculpture(motion) {
@@ -6,8 +7,8 @@ export function initSculpture(motion) {
  const stage = document.getElementById('sculpture-stage');
  const button = document.getElementById('sculpture-action');
  if (!canvas || !stage) return;
- const context = canvas.getContext('webgl2', { alpha:true, antialias:true });
- if (!context) { stage.classList.add('scene-fallback'); button.hidden = true; return; }
+ const context = canvas.getContext('webgl2', { alpha:true, antialias:true }) || canvas.getContext('webgl', { alpha:true, antialias:true });
+ if (!context) { stage.classList.add('scene-fallback'); if (button) button.hidden = true; return; }
  const renderer = new THREE.WebGLRenderer({canvas,context,alpha:true,antialias:true,powerPreference:'low-power'});
  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
  renderer.setClearColor(0,0); renderer.toneMapping=THREE.ACESFilmicToneMapping;
@@ -51,7 +52,7 @@ export function initSculpture(motion) {
  stage.addEventListener('pointermove',e=>{if(motion.paused)return;const r=stage.getBoundingClientRect();target.x=(e.clientX-r.left)/r.width-.5;target.y=(e.clientY-r.top)/r.height-.5;if(drag){dragAngle+=(e.clientX-dragX)*.012;dragX=e.clientX;}});
  stage.addEventListener('pointerdown',e=>{if(motion.paused)return;drag=true;dragX=e.clientX;stage.setPointerCapture(e.pointerId);stage.classList.add('is-dragging');});
  const release=()=>{drag=false;stage.classList.remove('is-dragging');};stage.addEventListener('pointerup',release);stage.addEventListener('pointercancel',release);stage.addEventListener('pointerleave',()=>{target.x=target.y=0;});
- button.addEventListener('click',()=>{exploded=!exploded;button.setAttribute('aria-pressed',String(exploded));button.innerHTML=`${exploded?'Reconstruir la pieza':'Desarmar la pieza'} <span>↗</span>`;if(motion.paused)renderStill();});
+ button?.addEventListener('click',()=>{exploded=!exploded;button.setAttribute('aria-pressed',String(exploded));button.innerHTML=`${exploded?'Reconstruir la pieza':'Desarmar la pieza'} <span>↗</span>`;sound.playPop();if(motion.paused)renderStill();});
  document.addEventListener('motionchange',()=>{stop();start();});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
  const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)start();else stop();},{rootMargin:'100px'});observer.observe(stage);

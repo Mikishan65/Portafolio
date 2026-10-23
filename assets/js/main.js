@@ -30,6 +30,7 @@ initEmailCopy();
 initCinematicMotion();
 initPlayground();
 initProjectDialog();
+initStationJumps();
 
 requestAnimationFrame(() => document.body.classList.add("is-ready"));
 
@@ -46,22 +47,28 @@ function initAudioControls() {
 
   if (!soundBtn) return;
 
-  soundBtn.addEventListener("click", () => {
-    const isEnabled = sound.toggle();
-    soundBtn.classList.toggle("is-muted", !isEnabled);
-    soundBtn.setAttribute("aria-pressed", String(isEnabled));
+  const syncSoundUI = () => {
+    soundBtn.classList.toggle("is-muted", !sound.enabled);
+    soundBtn.setAttribute("aria-pressed", String(sound.enabled));
     if (soundIcon) {
-      soundIcon.className = isEnabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
+      soundIcon.className = sound.enabled ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
     }
     if (soundLabel) {
-      soundLabel.textContent = isEnabled ? "SFX: ON" : "SFX: OFF";
+      soundLabel.textContent = sound.enabled ? "SFX: ON" : "SFX: OFF";
     }
+  };
+
+  syncSoundUI();
+
+  soundBtn.addEventListener("click", () => {
+    sound.toggle();
+    syncSoundUI();
   });
 }
 
 function initLiveClock() {
-  const clock = document.getElementById("local-clock");
-  if (!clock) return;
+  const clocks = document.querySelectorAll("[data-live-clock]");
+  if (!clocks.length) return;
 
   function updateTime() {
     try {
@@ -74,10 +81,12 @@ function initLiveClock() {
         second: "2-digit",
         hour12: false
       };
-      clock.textContent = new Intl.DateTimeFormat("es-BO", options).format(now);
+      const formatted = new Intl.DateTimeFormat("es-BO", options).format(now);
+      clocks.forEach(c => c.textContent = formatted);
     } catch {
       const d = new Date();
-      clock.textContent = d.toTimeString().split(" ")[0];
+      const formatted = d.toTimeString().split(" ")[0];
+      clocks.forEach(c => c.textContent = formatted);
     }
   }
 
@@ -233,7 +242,18 @@ function initEmailCopy() {
 
   copyBtn.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText("miguelangelchavarriacoronado@gmail.com");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText("miguelangelchavarriacoronado@gmail.com");
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = "miguelangelchavarriacoronado@gmail.com";
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
       sound.playSuccess();
       if (copyText) copyText.textContent = "¡Copiado!";
       if (copyIcon) copyIcon.className = "fa-solid fa-check";
@@ -245,18 +265,67 @@ function initEmailCopy() {
         copyBtn.classList.remove("is-success");
       }, 2400);
     } catch {
+      sound.playClick();
       if (copyText) copyText.textContent = "Selecciona el correo";
     }
   });
 }
 
 function initProjectDialog() {
- const dialog=document.getElementById('project-dialog');let trigger;
- document.querySelectorAll('[data-project-open]').forEach(button=>button.addEventListener('click',()=>{
-  trigger=button;document.getElementById('project-dialog-content').innerHTML=projectDetail(Number(button.dataset.projectOpen));dialog.showModal();dialog.scrollTop=0;document.body.classList.add('modal-open');dialog.querySelector('.dialog-close').focus();
-  dialog.querySelector('[data-close-dialog]')?.addEventListener('click',()=>dialog.close());
- }));
- dialog.querySelector('.dialog-close').addEventListener('click',()=>dialog.close());
- dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
- dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');trigger?.focus({preventScroll:true});});
+  const dialog = document.getElementById('project-dialog');
+  let trigger;
+  if (!dialog) return;
+
+  document.querySelectorAll('[data-project-open]').forEach(button => {
+    button.addEventListener('click', () => {
+      trigger = button;
+      const content = document.getElementById('project-dialog-content');
+      if (content) content.innerHTML = projectDetail(Number(button.dataset.projectOpen));
+      sound.playPop();
+      dialog.showModal();
+      dialog.scrollTop = 0;
+      document.body.classList.add('modal-open');
+      dialog.querySelector('.dialog-close')?.focus();
+
+      dialog.querySelector('[data-close-dialog]')?.addEventListener('click', () => {
+        sound.playClick();
+        dialog.close();
+      });
+    });
+  });
+
+  dialog.querySelector('.dialog-close')?.addEventListener('click', () => {
+    sound.playClick();
+    dialog.close();
+  });
+
+  dialog.addEventListener('click', e => {
+    if (e.target !== dialog) return;
+    const r = dialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+      sound.playClick();
+      dialog.close();
+    }
+  });
+
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('modal-open');
+    trigger?.focus({ preventScroll: true });
+  });
+}
+
+function initStationJumps() {
+  const jumpButtons = document.querySelectorAll("[data-jump-station]");
+  jumpButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      sound.playClick();
+      const targetId = btn.dataset.jumpStation;
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        targetEl.classList.add("is-highlighted");
+        setTimeout(() => targetEl.classList.remove("is-highlighted"), 1400);
+      }
+    });
+  });
 }

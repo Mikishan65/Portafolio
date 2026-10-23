@@ -1,5 +1,7 @@
 import { technologies } from '../data/portfolioData.js';
 import { motionState } from './cinematicMotion.js';
+import { sound } from './audioFx.js';
+
 export function initPlayground(){
  const field=document.querySelector('.playground');if(!field)return;
  const pieces=[...field.querySelectorAll('.stack-piece')];let shuffle=0;
@@ -11,12 +13,12 @@ export function initPlayground(){
  }
  pieces.forEach((el,i)=>{
   let start=null,moved=false;
-  el.addEventListener('pointerdown',e=>{if(e.button!==0)return;const p=placements.get(el);start={px:e.clientX,py:e.clientY,x:p.x,y:p.y};moved=false;el.setPointerCapture(e.pointerId);el.classList.add('is-grabbed');el.style.transition='none';});
+  el.addEventListener('pointerdown',e=>{if(e.button!==0)return;const p=placements.get(el)||{x:0,y:0};start={px:e.clientX,py:e.clientY,x:p.x,y:p.y};moved=false;el.setPointerCapture(e.pointerId);el.classList.add('is-grabbed');el.style.transition='none';sound.playClick();});
   el.addEventListener('pointermove',e=>{if(!start)return;const dx=e.clientX-start.px,dy=e.clientY-start.py;if(Math.abs(dx)+Math.abs(dy)>5)moved=true;const x=clamp(start.x+dx,0,field.clientWidth-el.offsetWidth),y=clamp(start.y+dy,0,field.clientHeight-el.offsetHeight);placements.set(el,{x,y,rotation:0});el.style.transform=`translate3d(${x}px,${y}px,0) rotate(0deg)`;});
-  const release=()=>{start=null;el.classList.remove('is-grabbed');};el.addEventListener('pointerup',release);el.addEventListener('pointercancel',release);
-  el.addEventListener('click',e=>{if(moved){moved=false;e.preventDefault();return;}pieces.forEach(p=>p.setAttribute('aria-pressed',String(p===el)));document.getElementById('stack-description').textContent=`${technologies[i].name} — ${technologies[i].detail}`;});
+  const release=()=>{if(moved)sound.playClick();start=null;el.classList.remove('is-grabbed');};el.addEventListener('pointerup',release);el.addEventListener('pointercancel',release);
+  el.addEventListener('click',e=>{if(moved){moved=false;e.preventDefault();return;}sound.playPop();pieces.forEach(p=>p.setAttribute('aria-pressed',String(p===el)));const desc=document.getElementById('stack-description');if(desc)desc.textContent=`${technologies[i].name} — ${technologies[i].detail}`;});
   el.setAttribute('aria-pressed','false');
  });
- document.getElementById('shuffle-stack').addEventListener('click',()=>{shuffle++;arrange();});
+ document.getElementById('shuffle-stack')?.addEventListener('click',()=>{shuffle++;sound.playClick();arrange();});
  new ResizeObserver(arrange).observe(field);document.fonts.ready.then(arrange);arrange();
 }

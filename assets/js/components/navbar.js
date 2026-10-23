@@ -1,7 +1,6 @@
 import { siteMeta } from "../data/portfolioData.js";
 
 const primaryNav = [
-  
   { id: "projects", label: "Proyectos" },
   { id: "experience", label: "Trayectoria" },
   { id: "about", label: "Perfil" },
