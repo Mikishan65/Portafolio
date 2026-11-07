@@ -6,12 +6,13 @@ Portafolio web inmersivo de ingeniería de software, QA testing e infraestructur
 
 ## Características Principales
 
-- **Malla Cinética en Canvas:** Fondo interactivo dinámico con partículas reactivas al cursor (`kineticBackground.js`).
-- **Sintetizador Web Audio API:** Audio háptico procedural para clics, estallido de burbujas y confirmación de despliegue (`audioFx.js`). Botón de conmutación `[ 🔊 SFX: ON/OFF ]` en la barra de navegación.
-- **Laboratorio Interactivo (Terminal DevOps & QA):** Consola interactiva en vivo con comandos reales (`deploy`, `qa`, `vps`, `cv`, `help`, `clear`) y enlace activo a `https://ccepcoin.tech/` (`terminalSimulator.js`).
-- **Burbujas Cinéticas de Habilidades:** Elementos flotantes táctiles que reaccionan con partículas de chispas y sonido al hacer clic.
-- **Pipeline de Entrega Continua:** Flujo interactivo que conecta desarrollo MVC, aseguramiento de calidad con Jira/Zephyr y despliegue en VPS Linux con Dokploy.
-- **Datos Reales de CV 2026:**
+- **Hero con propósito:** el título «Romper el molde» es la firma visual. Debajo, el recorrido real de una entrega (construir → verificar → desplegar) se reproduce al cargar y puede reejecutarse; termina en el enlace al sitio en producción `https://ccepcoin.tech/` (`pipeline.js`). Dos rutas claras: sumarse a un equipo o iniciar un proyecto.
+- **Proyectos como piezas:** en escritorio se apilan con scroll (GSAP + ScrollTrigger); en móvil son tarjetas compactas en flujo normal, con filtros deslizables.
+- **Experiencia verificable:** línea de tiempo con hitos comprobables; en móvil los logros adicionales se pliegan («Ver N logros más»).
+- **Stack para explorar:** piezas arrastrables que explican cómo se usa cada tecnología.
+- **Sintetizador Web Audio API:** audio procedural opcional (desactivado por defecto) para clics y confirmaciones (`audioFx.js`). Conmutador `SFX` en la barra de navegación.
+- **Movimiento accesible:** botón «Pausa», respeto de `prefers-reduced-motion` y animaciones solo con `transform`/`opacity`.
+- **Datos reales de CV 2026:**
   - Egresado de Ingeniería de Sistemas (UDI) con 54 materias aprobadas.
   - Pasantía QA en DATEC Ltda (Marzo 2026 – Agosto 2026).
   - Proyecto en producción `https://ccepcoin.tech/` (VPS Linux, Dokploy, Docker).
@@ -41,31 +42,32 @@ http://localhost:4173
 
 ```
 Portafolio/
-├── index.html                           # Estructura principal y canvas cinético
+├── index.html                           # Entrada: metadatos SEO, JSON-LD y carga de estilos/scripts
 ├── assets/
 │   ├── css/
-│   │   └── styles.css                   # Sistema de diseño "El Taller Cinético v3.0"
+│   │   ├── styles.css                   # Sistema base (tokens, secciones de contenido)
+│   │   ├── motion.css                   # Dirección de arte cinética (hero, proyectos, secciones)
+│   │   └── refine.css                   # Escala tipográfica, ritmo de espaciado, hero y adaptación móvil
 │   ├── js/
-│   │   ├── app.js                       # Montaje modular de las secciones y ticker
-│   │   ├── main.js                      # Inicializador de efectos, sonido, eventos y telemetría
+│   │   ├── app.js                       # Montaje de las secciones
+│   │   ├── main.js                      # Navegación, filtros, diálogo de proyectos, copia de correo
 │   │   ├── data/
-│   │   │   └── portfolioData.js         # Datos profesionales actualizados CV 2026
+│   │   │   └── portfolioData.js         # Datos profesionales (CV 2026)
 │   │   ├── modules/
 │   │   │   ├── audioFx.js               # Motor procedural Web Audio
-│   │   │   ├── kineticBackground.js     # Lienzo de partículas reactivas
-│   │   │   └── terminalSimulator.js     # Simulador de terminal Dokploy y QA
-│   │   └── components/
-│   │       ├── navbar.js                # Navegación con control de SFX y accesos rápidos
-│   │       ├── hero.js                  # Hero con pipeline, halo 3D y burbujas popping
-│   │       ├── projects.js              # Galería de proyectos con filtros interactivos
-│   │       ├── experience.js            # Línea de tiempo profesional y QA
-│   │       ├── about.js                 # Pilares y filosofía de ingeniería
-│   │       ├── technologies.js          # Matriz de stack clasificada
-│   │       ├── certifications.js        # Acreditaciones oficiales verificadas
-│   │       ├── education.js             # Formación académica UDI y telemetría de notas
-│   │       ├── highlights.js            # Cualidades profesionales y operativas
-│   │       ├── contact.js               # Canales directos y botón de copia de correo
-│   │       └── footer.js                # Pie de página con reloj local en vivo (UTC-4)
-│   └── favicon.svg                      # Favicon vectorial
+│   │   │   ├── cinematicMotion.js       # GSAP/ScrollTrigger: pin del hero, parallax, apilado
+│   │   │   ├── pipeline.js              # Recorrido construir → verificar → desplegar
+│   │   │   └── playground.js            # Piezas del stack arrastrables
+│   │   ├── components/                  # Una función por sección (hero, projects, experience, …)
+│   │   └── vendor/                      # GSAP y ScrollTrigger (sin build)
+│   └── favicon.svg
+├── skills/                              # Guías de diseño y motion usadas como criterio (ver skills/SKILL.md)
 └── Doc/                                 # Documentos oficiales y CVs
 ```
+
+## Criterios de diseño
+
+- Ningún texto visible por debajo de 11 px; párrafos a 15 px con interlineado 1,6 (`refine.css`).
+- Un único ritmo vertical de sección (`--sec`) y objetivos táctiles de al menos 44 px en pantallas táctiles.
+- Superficies planas: líneas finas y contraste de tono en lugar de sombras ambientales o brillos de neón.
+- Desde `.github/workflows/pages.yml` se publica el sitio estático en GitHub Pages sin paso de compilación.

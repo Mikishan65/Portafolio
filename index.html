@@ -19,6 +19,26 @@
     <meta property="og:description" content="Desarrollo de software de alta calidad, aseguramiento QA e infraestructura ágil en producción." />
     <meta property="og:url" content="https://mikishan65.github.io/Portafolio/" />
     <meta property="og:image" content="https://mikishan65.github.io/Portafolio/assets/profile-miguel.png" />
+    <meta property="og:image:alt" content="Retrato de Miguel Angel Chavarria Coronado" />
+    <meta property="og:locale" content="es_BO" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href="https://mikishan65.github.io/Portafolio/" />
+
+    <!-- Datos estructurados: ayudan a buscadores y a reclutadores que indexan perfiles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Miguel Angel Chavarria Coronado",
+      "jobTitle": "Ingeniero de Sistemas · Desarrollador Full Stack, QA y DevOps",
+      "url": "https://mikishan65.github.io/Portafolio/",
+      "image": "https://mikishan65.github.io/Portafolio/assets/profile-miguel.png",
+      "address": { "@type": "PostalAddress", "addressLocality": "Santa Cruz", "addressCountry": "BO" },
+      "alumniOf": "Universidad para el Desarrollo y la Innovación (UDI)",
+      "knowsAbout": ["Desarrollo Full Stack", "QA y testing funcional (Jira, Zephyr)", "DevOps (VPS Linux, Dokploy, Docker)", "Redes Cisco"],
+      "sameAs": ["https://github.com/Mikishan65", "https://www.linkedin.com/in/miguel-chavarria-2ba25429b/"]
+    }
+    </script>
 
     <!-- Tipografía Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,10 +46,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,600;0,700;0,800;0,900;1,700;1,800&family=Inclusive+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Azeret+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- FontAwesome 6 -->
+    <!-- Carga sin bloquear el primer render (el hero no depende de iconos) -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    </noscript>
 
     <!-- Estilos Principales -->
     <link rel="stylesheet" href="assets/css/styles.css" />

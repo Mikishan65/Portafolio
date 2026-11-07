@@ -1,5 +1,5 @@
 import { sound } from './audioFx.js';
-import { initShapes } from './shapes.js';
+import { initPipeline } from './pipeline.js';
 
 export const motionState={paused:matchMedia('(prefers-reduced-motion: reduce)').matches,progress:0};
 
@@ -8,9 +8,7 @@ export function initCinematicMotion() {
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  const button=document.getElementById('motion-toggle');
  let manualPause=false,context;
- const shapeStage=document.getElementById('shape-stage');
- // El progreso del hero se expone como variable CSS: las formas se dispersan con el scroll.
- const setProgress=p=>{motionState.progress=p;shapeStage?.style.setProperty('--sp',p.toFixed(3));};
+ const setProgress=p=>{motionState.progress=p;};
  if(gsap&&ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
  function setup(){
   context?.revert();setProgress(0);
@@ -18,9 +16,9 @@ export function initCinematicMotion() {
   context=gsap.context(()=>{
    const mm=gsap.matchMedia();
    mm.add('(min-width: 800px)',()=>{
-    const tl=gsap.timeline({scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'+=95%',pin:'.hero-stage-inner',anticipatePin:1,scrub:.65,invalidateOnRefresh:true,onUpdate:self=>setProgress(self.progress)}});
-    tl.to('.type-one',{xPercent:-70,rotate:-8,opacity:.1,ease:'none'},0).to('.type-two',{xPercent:65,rotate:7,opacity:.1,ease:'none'},0)
-      .to('.shape-stage',{scale:1.25,yPercent:8,ease:'none'},0).to('.hero-side-note,.hero-bottomline,.hero-interaction-hint',{opacity:0,y:-40,duration:.3},0);
+    const tl=gsap.timeline({scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'+=60%',pin:'.hero-stage-inner',anticipatePin:1,scrub:.65,invalidateOnRefresh:true,onUpdate:self=>setProgress(self.progress)}});
+    tl.to('.type-one',{xPercent:-70,rotate:-8,opacity:0,ease:'none'},0).to('.type-two',{xPercent:65,rotate:7,opacity:0,ease:'none'},0)
+      .to('.hero-pipeline,.hero-bottomline',{opacity:0,y:-40,duration:.3},0);
    });
    mm.add('(max-width: 799px)',()=>{
     setProgress(0);
@@ -56,5 +54,5 @@ export function initCinematicMotion() {
  document.addEventListener('visibilitychange',()=>document.body.classList.toggle('tab-idle',document.hidden));
  document.fonts.ready.then(()=>ScrollTrigger?.refresh());
  document.querySelectorAll('img').forEach(img=>img.addEventListener('load',()=>ScrollTrigger?.refresh(),{once:true}));
- initShapes(motionState);
+ initPipeline(motionState);
 }

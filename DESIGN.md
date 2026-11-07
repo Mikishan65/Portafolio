@@ -6,6 +6,8 @@ Portafolio profesional de **Miguel Angel Chavarria Coronado**, Ingeniero de Sist
 
 ## 1. Dirección Estética y Filosofía de Diseño
 
+> Paleta vigente del sitio: tinta `#191a18`, papel `#e9e7df`, naranja `#ff5b35` y ácido `#d7ef72`. La tabla de colores azul/menta que sigue es el sistema base heredado de `styles.css`.
+
 - **Atmósfera:** Cyber-industrial oscura de alta ingeniería. Profundidad obsidiana (`#0C0E14`), superficies grafito elevadas (`#141722`, `#1A1E2C`), y acentos vibrantes de señal sólida:
   - **Azul Ultramar Eléctrico** (`#5B4FE9`): arquitectura, código y foco interactivo.
   - **Verde Menta Fósforo** (`#10B981`): estado en vivo, producción continua, uptime y validación QA.
@@ -18,36 +20,15 @@ Portafolio profesional de **Miguel Angel Chavarria Coronado**, Ingeniero de Sist
 
 ---
 
-## 2. Inmersión y Componentes Dinámicos Especiales
+## 2. Gesto principal y componentes dinámicos
 
-1. **Malla Cinética en Canvas HTML5 (`kineticBackground.js`):**
-   - Lienzo a 60/120 fps en segundo plano con partículas orgánicas interconectadas y repulsión dinámica al puntero del mouse.
-   - Pausa automática en pestañas ocultas y desactivación limpia con `prefers-reduced-motion`.
+La audacia se concentra en un solo lugar: el título gigante «ROMPER EL MOLDE.» sobre naranja. El resto de la interfaz es sobria y legible.
 
-2. **Motor de Audio Web Procedural (`audioFx.js`):**
-   - Sintetizador táctil con Web Audio API nativo (cero latencia, 0 archivos de audio externos).
-   - Genera micro-clicks de botón, chasquidos pop al detonar burbujas y acordes de confirmación de despliegue.
-   - Conmutador accesible en la barra de navegación: `[ 🔊 SFX: ON / OFF ]`.
-
-3. **Simulador de Terminal DevOps & QA en Vivo (`terminalSimulator.js`):**
-   - Consola interactiva conectada a un entorno VPS simulado (`miguel@vps-production`).
-   - Acciones rápidas preconfiguradas:
-     - `deploy ccepcoin`: simula el pipeline a producción, cambio de contenedor Docker y swap con Dokploy.
-     - `run qa-tests`: ejecuta la matriz de pruebas funcionales Jira & Zephyr con acreditación DATEC.
-     - `vps telemetry`: telemetría en tiempo real de consumo de CPU, RAM y reverse proxy.
-     - `cv summary`: resumen de credenciales y contacto 2026.
-     - `clear` / comandos por entrada de teclado (`help`, `deploy`, `qa`, `vps`, `cv`, `clear`).
-
-4. **Burbujas Cinéticas de Habilidades con Sparks (`skill-pop`):**
-   - Burbujas flotantes orgánicas en la portada con física de balanceo.
-   - Al hacer clic, explotan con partículas de chispas (`<i style="--spark-index: ...">`), sonido procedimental pop y anuncio de estado para lectores de pantalla.
-
-5. **Pipeline Continuo de Entrega:**
-   - 4 nodos interactivos: `[01 Construir]` → `[02 Verificar]` → `[03 Desplegar]` → `[Producción: ccepcoin.tech ↗]`.
-   - Iluminación de cables de conexión y retroalimentación auditiva al interactuar.
-
-6. **Cinta Ticker Marquee Continua:**
-   - Desplazamiento infinito continuo acelerado por hardware con telemetría de producción, certificaciones y credenciales académicas.
+1. **Recorrido de entrega (`pipeline.js`):** tres pasos reales — Construir, Verificar, Desplegar — que se completan en secuencia sobre una línea de progreso y terminan en el estado «En producción · ccepcoin.tech». Se reproduce al cargar y con «Reejecutar» (con audio opcional). Con movimiento reducido o pausado se muestra ya completo.
+2. **Dos rutas de contacto:** «Súmame a tu equipo» y «Tengo un proyecto», con la misma jerarquía visual.
+3. **Proyectos apilados (escritorio):** paneles `sticky` con escala y rotación ligadas al scroll. En móvil se convierten en tarjetas compactas en flujo normal.
+4. **Stack arrastrable:** piezas con física ligera para explorar tecnologías.
+5. **Audio procedural (`audioFx.js`):** Web Audio API, sin archivos externos y desactivado por defecto.
 
 ---
 
