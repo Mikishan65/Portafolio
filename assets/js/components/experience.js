@@ -1,5 +1,7 @@
 import { experienceEntries, siteMeta } from "../data/portfolioData.js";
 
+const renderTask = (task) => `<li><span class="task-bullet" aria-hidden="true">▹</span><span>${task}</span></li>`;
+
 function renderTimelineItem(entry, index) {
   const livePill = entry.liveUrl
     ? `<a href="${entry.liveUrl}" target="_blank" rel="noopener noreferrer" class="timeline-live-badge" title="Visitar desarrollo en vivo en producción">
@@ -41,8 +43,12 @@ function renderTimelineItem(entry, index) {
         </div>
 
         <ul class="timeline-tasks">
-          ${entry.tasks.map((task) => `<li><span class="task-bullet" aria-hidden="true">▹</span><span>${task}</span></li>`).join("")}
+          ${entry.tasks.slice(0, 2).map(renderTask).join("")}
         </ul>
+        ${entry.tasks.length > 2 ? `<details class="task-more">
+          <summary>Ver ${entry.tasks.length - 2} ${entry.tasks.length - 2 === 1 ? "logro más" : "logros más"}</summary>
+          <ul class="timeline-tasks">${entry.tasks.slice(2).map(renderTask).join("")}</ul>
+        </details>` : ""}
 
         <div class="timeline-proof-strip">
           <div class="proof-content">

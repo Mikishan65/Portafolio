@@ -21,6 +21,7 @@ initScrollProgress();
 initSectionSpy();
 initReveals();
 initFilters();
+initTaskDetails();
 
 
 
@@ -328,4 +329,13 @@ function initStationJumps() {
       }
     });
   });
+}
+
+// En escritorio los logros se muestran completos; en móvil quedan plegados.
+function initTaskDetails() {
+  const query = window.matchMedia("(min-width: 800px)");
+  const items = [...document.querySelectorAll(".task-more")];
+  const sync = () => items.forEach((item) => { item.open = query.matches; });
+  sync();
+  query.addEventListener("change", sync);
 }

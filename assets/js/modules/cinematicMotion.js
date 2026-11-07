@@ -31,11 +31,14 @@ export function initCinematicMotion() {
    gsap.fromTo('.photo-orbit',{rotate:-30},{rotate:150,ease:'none',scrollTrigger:{trigger:'.motion-about',start:'top bottom',end:'bottom top',scrub:1}});
    gsap.fromTo('.about-photo',{rotate:-8,y:60},{rotate:5,y:-40,ease:'none',scrollTrigger:{trigger:'.motion-about',start:'top bottom',end:'bottom top',scrub:.6}});
    gsap.utils.toArray('.work-heading h2,.playground-heading h2,.about-story h2,.section-title,.contact-title').forEach(el=>gsap.from(el,{y:55,rotation:2,opacity:0,duration:.65,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 93%',once:true}}));
-   gsap.utils.toArray('.project-panel').filter(panel=>panel.style.display!=='none').forEach((panel,i,all)=>{
-    const next=all[i+1];if(!next)return;
-    gsap.to(panel.querySelector('.project-panel-layout'),{scale:.89,rotate:-3,opacity:.55,ease:'none',scrollTrigger:{trigger:next.previousElementSibling,start:'top 65%',end:'top 15%',scrub:.5}});
+   // Apilado/parallax de proyectos: solo escritorio (en móvil las tarjetas van en flujo normal).
+   mm.add('(min-width: 800px)',()=>{
+    gsap.utils.toArray('.project-panel').filter(panel=>panel.style.display!=='none').forEach((panel,i,all)=>{
+     const next=all[i+1];if(!next)return;
+     gsap.to(panel.querySelector('.project-panel-layout'),{scale:.89,rotate:-3,opacity:.55,ease:'none',scrollTrigger:{trigger:next.previousElementSibling,start:'top 65%',end:'top 15%',scrub:.5}});
+    });
+    gsap.utils.toArray('.project-artwork').forEach(art=>gsap.fromTo(art,{y:50,rotate:9},{y:-35,rotate:-5,ease:'none',scrollTrigger:{trigger:art.closest('.project-panel').previousElementSibling,start:'top bottom',end:()=>'+='+ (innerHeight+art.closest('.project-panel').offsetHeight),scrub:.8}}));
    });
-   gsap.utils.toArray('.project-artwork').forEach(art=>gsap.fromTo(art,{y:50,rotate:9},{y:-35,rotate:-5,ease:'none',scrollTrigger:{trigger:art.closest('.project-panel').previousElementSibling,start:'top bottom',end:()=>'+='+ (innerHeight+art.closest('.project-panel').offsetHeight),scrub:.8}}));
    gsap.fromTo('.contact-title',{xPercent:-5},{xPercent:4,ease:'none',scrollTrigger:{trigger:'#contact',start:'top bottom',end:'bottom bottom',scrub:.8}});
   });
   ScrollTrigger.refresh();

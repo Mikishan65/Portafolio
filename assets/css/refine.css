@@ -1,0 +1,329 @@
+/* ============================================================
+   REFINE — escala tipográfica, ritmo de espaciado y adaptación móvil.
+   Se carga al final: afina sin tocar los archivos base.
+
+   Escala (ningún texto visible baja de --fs-micro):
+     --fs-micro  11px   etiquetas en mayúsculas / metadatos
+     --fs-meta   12.5px fechas, emisores, chips
+     --fs-body   15px   párrafos
+   ============================================================ */
+:root {
+  --fs-micro: 11px;
+  --fs-meta: 12.5px;
+  --fs-body: 15px;
+  --lh-body: 1.6;
+  --sec: clamp(56px, 8vw, 112px);   /* padding vertical de sección */
+  --gutter: 18px;
+}
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-x: clip; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+p, li { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* ---------- Etiquetas (micro) ---------- */
+.hero-topline,
+.hero-topline span:last-child,
+.manifesto-label,
+.eyebrow,
+.project-panel-top,
+.project-panel-bottom,
+.photo-caption,
+.hero-interaction-hint,
+.playground-instruction,
+.route-badge,
+.contact-pill,
+.section-header-badge,
+.stations-nav-label,
+.cert-badge-pill,
+.edu-status-badge,
+.motion-toggle,
+.sound-status-label {
+  font-size: var(--fs-micro);
+  letter-spacing: .08em;
+  line-height: 1.4;
+}
+
+/* ---------- Metadatos ---------- */
+.company-loc,
+.cert-issuer,
+.cert-date,
+.cert-verified-tag,
+.edu-period,
+.station-jump-btn,
+.rail-number,
+.timeline-role-badge,
+.timeline-period-pill,
+.proof-external-link,
+.tech-chip,
+.telemetry-ping,
+.telemetry-time,
+.telemetry-info small,
+.telemetry-stat small,
+.score-note,
+.footer-links a {
+  font-size: var(--fs-meta);
+}
+.tech-chip,
+.timeline-tags .tech-chip { font-size: var(--fs-meta); padding: 5px 10px; }
+
+/* ---------- Párrafos ---------- */
+.work-heading > p,
+.project-panel-copy p,
+.hero-bottomline p,
+.manifesto-bottom,
+.about-story p,
+.playground-heading > div > p,
+.stack-description,
+.contact-subtitle,
+.route-desc,
+.cert-description,
+.edu-detail,
+.section-subtitle,
+.footer-copy,
+.timeline-tasks li,
+.proof-content {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+.about-story .about-lead { font-size: clamp(18px, 2.2vw, 22px); line-height: 1.45; }
+.project-panel-copy p { max-width: 46ch; }
+.hero-bottomline p + p { opacity: .85; }          /* contraste AA sobre naranja */
+.project-panel-bottom { opacity: .9; }
+
+/* ---------- Botones / enlaces ---------- */
+.project-details-button,
+.underlink,
+.shape-action,
+.route-cta,
+.motion-projects .filter-btn,
+.filter-btn { font-size: 13px; }
+.hero-explore { font-size: 12px; }
+
+/* ---------- Ritmo de espaciado ---------- */
+.manifesto { padding-block: var(--sec); }
+.motion-projects { padding-top: var(--sec); }
+.motion-about { padding-block: var(--sec); }
+.playground-section { padding-block: var(--sec); }
+.section { padding-block: var(--sec); }
+.manifesto-label { margin-bottom: clamp(32px, 6vw, 60px); }
+.manifesto-bottom { padding-top: clamp(32px, 5vw, 60px); }
+
+/* ---------- Logros plegables (experiencia) ---------- */
+.timeline-tasks:has(+ .task-more) { margin-bottom: 8px; }
+.task-more > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-bottom: 8px;
+  font: 600 13px/1.2 var(--font-mono, monospace);
+  color: var(--card-tint, var(--acid));
+}
+.task-more > summary::-webkit-details-marker { display: none; }
+.task-more > summary::after { content: "+"; font-size: 18px; line-height: 1; }
+.task-more[open] > summary::after { content: "−"; }
+.task-more[open] > summary { margin-bottom: 4px; }
+@media (min-width: 800px) {
+  /* en escritorio van siempre abiertos y sin botón */
+  .task-more > summary { display: none; }
+}
+
+/* ============================================================
+   MÓVIL (≤ 799px)
+   ============================================================ */
+@media (max-width: 799px) {
+  /* --- Navegación --- */
+  .nav-panel .nav-link,
+  .site-nav .nav-panel a { font-size: 17px; padding: 14px 6px; min-height: 48px; }
+  .motion-toggle { min-height: 40px; }
+
+  /* --- Hero --- */
+  .hero-topline,
+  .hero-topline span:last-child { font-size: 10px; }
+  .hero-topline > span:last-child { max-width: 120px; }
+  .hero-side-note,
+  .hero-interaction-hint { display: none; }      /* el hint habla de cursor: no aplica a táctil */
+  .hero-bottomline p { font-size: 14px; max-width: 240px; }
+  .hero-bottomline { grid-template-columns: 1fr 96px; }
+  .hero-explore {
+    width: 96px; height: 96px;
+    flex-direction: column; gap: 2px;
+    text-align: center; font-size: 11px; line-height: 1.25;
+  }
+  .hero-explore span { font-size: 22px; margin: 0; }
+  .shape-stage .s8, .shape-stage .s9 { display: none; }   /* no compiten con el botón "Explora" */
+  .shape-action { font-size: 13px; padding: 12px 0; min-height: 44px; }
+
+  /* --- Manifiesto --- */
+  .manifesto { padding-block: 56px; }
+  .manifesto-label { flex-direction: column; gap: 6px; font-size: var(--fs-micro); margin-bottom: 36px; }
+  .manifesto-label > span:last-child { text-align: left; }
+  .manifesto-bottom { font-size: 15px; padding-top: 32px; }
+  .manifesto-bottom .underlink { font-size: 13px; }
+
+  /* --- Proyectos: tarjetas en flujo normal (sin sticky) y compactas --- */
+  .work-heading > p { font-size: 15px; }
+  .filter-toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+  .motion-projects .filter-toolbar { margin-inline: -4vw; padding-inline: 4vw; }   /* sangrado exacto al borde */
+  .filter-toolbar::-webkit-scrollbar { display: none; }
+  .filter-toolbar .filter-btn { flex: none; scroll-snap-align: start; white-space: nowrap; }
+  .motion-projects .filter-btn { font-size: 13px; padding: 10px 18px; }
+
+  .project-card.project-panel {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 16px 18px 18px;
+    margin-bottom: 14px;
+  }
+  .project-panel-top { font-size: var(--fs-micro); padding-bottom: 12px; }
+  .project-panel-top > span:last-child { font-size: 22px; }
+  .project-panel-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40%;
+    gap: 0 8px;
+    align-items: center;
+    flex: none;
+    padding: 12px 0 0;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .project-panel-copy { display: contents; }
+  .project-panel-copy h3 {
+    grid-column: 1; grid-row: 1;
+    margin: 0;
+    font-size: clamp(40px, 12.5vw, 60px);
+  }
+  .project-artwork {
+    position: relative;
+    grid-column: 2; grid-row: 1;
+    top: auto; right: auto;
+    width: auto; height: 150px;
+    transform: none !important;
+  }
+  .project-artwork > * { scale: .5; }
+  .orbit-system small,
+  .match-system > i,
+  .plate-system small,
+  .query-system small,
+  .bars-system > span,
+  .paper-system i { display: none; }               /* rótulos decorativos ilegibles a esta escala */
+  .project-panel-copy p {
+    grid-column: 1 / -1;
+    margin: 12px 0 0;
+    max-width: none;
+    font-size: 15px;
+  }
+  .project-details-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin: 16px 0 4px;
+    padding: 12px 20px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .project-panel-bottom { font-size: var(--fs-micro); padding-top: 12px; }
+  .project-deck { padding-bottom: 24px; }
+
+  /* --- Sobre mí --- */
+  .motion-about { padding-block: 56px; gap: 44px; }
+  .about-story p { font-size: 15px; }
+  .about-story h2 { font-size: clamp(40px, 12vw, 56px); }
+  .photo-caption { margin-top: 24px; }
+
+  /* --- Stack --- */
+  .playground-section { padding-block: 56px 40px; }
+  .playground-heading h2 { font-size: clamp(48px, 15vw, 64px); }
+  .playground-heading > div > p { font-size: 15px; }
+  .stack-piece { font-size: 12px; }
+  .playground-instruction { font-size: var(--fs-micro); }
+  .stack-description { font-size: 15px; min-height: 56px; }
+
+  /* --- Secciones tipo "section" (experiencia, certificaciones, educación) --- */
+  .section { padding-block: 56px; }
+  .section-title { font-size: clamp(32px, 9vw, 48px); line-height: 1.05; }
+  .section-subtitle { font-size: 15px; }
+
+  .timeline-card { padding: 18px 16px; }
+  .timeline-card .role-title { font-size: 20px; }
+  .timeline-tasks li { font-size: 14.5px; }
+  .timeline-tasks { gap: 8px; }
+  .timeline-proof-strip { padding: 12px 14px; }
+  .proof-content { font-size: 13.5px; }
+  .experience-telemetry-grid { gap: 8px; }
+
+  /* Certificaciones: tarjetas compactas */
+  .cert-grid { gap: 12px; }
+  .cert-card { padding: 16px; }
+  .cert-title { font-size: 18px; }
+  .cert-description {
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  .cert-icon-wrapper { display: none; }
+  .cert-card-top { margin-bottom: 10px; }
+  .cert-cta-strip .btn-primary { font-size: 13px; min-height: 48px; }
+
+  /* Educación: la cuadrícula de notas ya no se desborda */
+  .scores-grid { grid-template-columns: 1fr; gap: 10px; }
+  .score-card { padding: 14px 16px; gap: 14px; min-width: 0; }
+  .score-badge { white-space: nowrap; flex: none; }
+  .score-text { min-width: 0; }
+  .score-title, .score-note { overflow-wrap: anywhere; }
+  .score-note { font-size: 13.5px; }
+  .edu-card { padding: 18px 0; }
+  .edu-detail { font-size: 14.5px; }
+
+  /* --- Contacto --- */
+  .contact-title { font-size: clamp(48px, 17vw, 84px); }
+  .contact-subtitle { font-size: 15px; }
+  .route-title { font-size: 20px; }
+  .route-desc { font-size: 14.5px; }
+  .route-cta { font-size: 13px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+  .contact-direct-channels {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 13px;
+  }
+  .email-copy-wrapper { flex-wrap: wrap; gap: 8px 12px; }
+  .email-copy-wrapper .direct-link,
+  .contact-direct-channels .direct-link { font-size: 13px; }
+  .direct-link span { overflow-wrap: anywhere; }
+  .copy-email-btn { min-height: 40px; }
+
+  /* --- Footer --- */
+  .footer-links { gap: 14px 18px; }
+  .footer-links a { font-size: 13px; min-height: 36px; display: inline-flex; align-items: center; }
+  .footer-copy { font-size: 12.5px; }
+}
+
+/* Teléfonos estrechos */
+@media (max-width: 380px) {
+  .hero-bottomline p { font-size: 13px; max-width: 200px; }
+  .project-panel-copy h3 { font-size: 38px; }
+  .project-artwork { height: 130px; }
+}
+
+/* Movimiento reducido: respetar y mantener todo visible */
+@media (prefers-reduced-motion: reduce) {
+  .filter-toolbar { scroll-behavior: auto; }
+}
