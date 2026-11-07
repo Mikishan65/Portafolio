@@ -1,4 +1,5 @@
 import { sound } from './audioFx.js';
+import { initShapes } from './shapes.js';
 
 export const motionState={paused:matchMedia('(prefers-reduced-motion: reduce)').matches,progress:0};
 
@@ -7,19 +8,22 @@ export function initCinematicMotion() {
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  const button=document.getElementById('motion-toggle');
  let manualPause=false,context;
+ const shapeStage=document.getElementById('shape-stage');
+ // El progreso del hero se expone como variable CSS: las formas se dispersan con el scroll.
+ const setProgress=p=>{motionState.progress=p;shapeStage?.style.setProperty('--sp',p.toFixed(3));};
  if(gsap&&ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
  function setup(){
-  context?.revert();motionState.progress=0;
+  context?.revert();setProgress(0);
   if(motionState.paused||!gsap||!ScrollTrigger)return;
   context=gsap.context(()=>{
    const mm=gsap.matchMedia();
    mm.add('(min-width: 800px)',()=>{
-    const tl=gsap.timeline({scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'+=95%',pin:'.hero-stage-inner',scrub:.65,invalidateOnRefresh:true,onUpdate:self=>motionState.progress=self.progress}});
+    const tl=gsap.timeline({scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'+=95%',pin:'.hero-stage-inner',anticipatePin:1,scrub:.65,invalidateOnRefresh:true,onUpdate:self=>setProgress(self.progress)}});
     tl.to('.type-one',{xPercent:-70,rotate:-8,opacity:.1,ease:'none'},0).to('.type-two',{xPercent:65,rotate:7,opacity:.1,ease:'none'},0)
-      .to('.sculpture-stage',{scale:1.45,yPercent:12,ease:'none'},0).to('.hero-side-note,.hero-bottomline,.hero-interaction-hint',{opacity:0,y:-40,duration:.3},0);
+      .to('.shape-stage',{scale:1.25,yPercent:8,ease:'none'},0).to('.hero-side-note,.hero-bottomline,.hero-interaction-hint',{opacity:0,y:-40,duration:.3},0);
    });
    mm.add('(max-width: 799px)',()=>{
-    motionState.progress=0;
+    setProgress(0);
     gsap.to('.type-one',{xPercent:-14,ease:'none',scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'bottom top',scrub:.4}});
     gsap.to('.type-two',{xPercent:10,ease:'none',scrollTrigger:{trigger:'.motion-hero',start:'top top',end:'bottom top',scrub:.4}});
    });
@@ -49,5 +53,5 @@ export function initCinematicMotion() {
  document.addEventListener('visibilitychange',()=>document.body.classList.toggle('tab-idle',document.hidden));
  document.fonts.ready.then(()=>ScrollTrigger?.refresh());
  document.querySelectorAll('img').forEach(img=>img.addEventListener('load',()=>ScrollTrigger?.refresh(),{once:true}));
- import('./sculpture.js').then(({initSculpture})=>initSculpture(motionState)).catch(()=>{document.querySelector('.sculpture-stage').classList.add('scene-fallback');document.getElementById('sculpture-action').hidden=true;});
+ initShapes(motionState);
 }
